@@ -1,12 +1,12 @@
+import { getUsers, addUser } from "@/shared/helpers/api";
+import Timer from "../NewGame/components/Timer";
+
 const Landing = () => {
-  const test = () => {
-    fetch("https://opentdb.com/api.php?amount=5&category=11")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  };
   return (
     <div>
-      <button onClick={test}>test</button>
+      <button onClick={() => console.log(getUsers)}>test</button>
+      <button onClick={() => console.log(addUser)}>add</button>
+      <Timer onExpire={() => console.log("expired")} />
     </div>
   );
 };
