@@ -1,0 +1,23 @@
+@import "./constants";
+
+// BREAKPOINT
+@mixin tablet {
+  @media only screen and (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+@mixin laptop {
+  @media only screen and (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media only screen and (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+@mixin large {
+  @media only screen and (min-width: $breakpoint-xl) {
+    @content;
+  }
+}

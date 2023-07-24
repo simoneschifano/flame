@@ -1,0 +1,43 @@
+@import "./functions";
+
+// COLORS
+$color-black: #252a34;
+$color-background: #eaeaea;
+$color-primary: #08d9d6;
+$color-secondary: #fd7979;
+$color-accent: #056573;
+
+// BREAKPOINT
+$breakpoint-xs: 0px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1440px;
+$breakpoint-xl: 1920px;
+
+// DIMENSION
+$border-radius--sm: rem(5px);
+$border-radius--md: rem(10px);
+$border-radius--lg: rem(15px);
+$border-radius--xl: rem(40px);
+
+$spacing--sm: rem(5px);
+$spacing--md: rem(10px);
+$spacing--lg: rem(15px);
+
+// FONT
+$base-font: "Inter", sans-serif;
+
+// Z-INDEX
+$z-mobile-stepper: 1000;
+$z-fab: 1050;
+$z-speed-dial: 1050;
+$z-app-bar: 1100;
+$z-modal: 1200;
+$z-drawer: 1300;
+$z-snackbar: 1400;
+$z-tooltip: 1500;
+
+// BOX-SHADOW
+// $box-shadow--sm: 0px 8px 16px 0px #00000009;
+// $box-shadow--md: 0px 12px 16px 0px #00000009;
+// $box-shadow--lg: 0px 8px 24px 0px #00000014;
