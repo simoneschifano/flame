@@ -7,7 +7,17 @@ const RoutesWrapper = () => {
     <Routes>
       <Route path="/" element={<Landing />} />
 
-      <Route path="/new-game" element={<NewGame />}></Route>
+      <Route path="/new-game" element={<NewGame />}>
+        <Route path="choose-username" element={<div />} />
+        <Route path="choose-difficulty" element={<div />} />
+        <Route path="quiz" element={<div />} />
+        <Route path="results" element={<div />} />
+        <Route
+          index
+          element={<Navigate to={"/new-game/choose-username"} replace />}
+        />
+        {/* <Route path="*" element={<Navigate to={"choose-username"} replace />} /> */}
+      </Route>
 
       <Route path="/leaderboard" element={<NewGame />} />
 
