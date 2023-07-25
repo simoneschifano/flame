@@ -19,7 +19,7 @@
     }
 
     &--selected {
-      background-color: rgba(red, green, blue, alpha) $color-accent;
+      background-color: $color-accent;
     }
   }
 
