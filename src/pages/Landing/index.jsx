@@ -1,11 +1,8 @@
-import { getUsers, addUser } from "@/shared/helpers/api";
+import { getUsers } from "@/shared/helpers/api";
 import { getRandomQuestions } from "../NewGame/helpers/utilities";
 import Timer from "../NewGame/components/Timer";
-import { useCurrentStep } from "../NewGame/helpers/hooks";
 
 const Landing = () => {
-  const currentStep = useCurrentStep();
-  console.log(currentStep);
   return (
     <div>
       <button
@@ -26,8 +23,8 @@ const Landing = () => {
       </button>
       <button
         onClick={async () => {
-          const user = await addUser("test2", 10);
-          console.log(user);
+          //   const user = await addUser("test2", 10);
+          //   console.log(user);
         }}
       >
         add

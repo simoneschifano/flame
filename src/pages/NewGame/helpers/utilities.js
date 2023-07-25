@@ -23,8 +23,8 @@ const processQuestionObject = (questionObj) => {
   delete questionObj.incorrect_answers;
 
   questionObj.answers = answers;
-  questionObj.isValidated = false;
   questionObj.isAnswered = false;
+  questionObj.isValidated = false;
   questionObj.id = crypto.randomUUID();
 
   return questionObj;
