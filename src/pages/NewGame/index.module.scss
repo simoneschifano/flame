@@ -1,12 +1,83 @@
 .NewGame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+
   &-header {
+    height: 80px;
+    border-bottom: 1px solid $color-background;
+    width: 100%;
   }
 
   &-content {
+    padding: $spacing--xl;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    overflow-y: scroll;
+    flex-grow: 1;
+    max-width: 500px;
+    width: 100%;
   }
 
-  @include tablet {
-    &-header {
+  &-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    z-index: $z-fab;
+    justify-content: center;
+    align-items: center;
+    padding: $spacing--xl;
+    box-shadow: 0 4px 20px #0000000d;
+    gap: $spacing--md;
+    border-top: 1px solid $color-background;
+
+    button {
+      width: 100%;
     }
+
+    @include tablet {
+      button {
+        width: 250px;
+      }
+    }
+  }
+}
+
+.test {
+  height: 100px;
+  width: 100px;
+  background-color: red;
+  animation: blob 9s alternate-reverse infinite;
+}
+
+@keyframes blob {
+  0% {
+    border-radius: 22% 70% 10% 76% / 35% 67% 15% 42%;
+  }
+
+  25% {
+    border-radius: 62% 71% 22% 78% / 26% 85% 24% 60%;
+  }
+  50% {
+    border-radius: 44% 56% 52% 48% / 30% 30% 70% 70%;
+    transform: rotate(180deg);
+  }
+  75% {
+    border-radius: 62% 47% 86% 18% / 63% 65% 28% 10%;
+  }
+
+  100% {
+    border-radius: 22% 70% 10% 76% / 35% 67% 15% 42%;
+    transform: rotate(360deg);
   }
 }
