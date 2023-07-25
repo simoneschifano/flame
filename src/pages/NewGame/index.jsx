@@ -10,6 +10,7 @@ import Button from "@/shared/components/Button";
 import { gameReducer } from "./helpers/reducers";
 import { useReducer } from "react";
 import { updateUserCollection } from "@/shared/helpers/api";
+import logo from "@/assets/brand/logo-word.png";
 
 const { CHOOSE_USERNAME, CHOOSE_DIFFICULTY, QUIZ, RESULTS } = NEW_GAME_ROUTES;
 const { UPDATE_QUESTION_STATE } = GAME_STATE_ACTIONS;
@@ -61,7 +62,9 @@ const NewGame = () => {
 
   return (
     <main className={styles.NewGame}>
-      <header className={styles["NewGame-header"]}></header>
+      <header className={styles["NewGame-header"]}>
+        <img src={logo} alt="" />
+      </header>
       <section className={styles["NewGame-content"]}>
         <Outlet context={{ state, dispatch }} />
         {/* <section className={styles.test}></section> */}

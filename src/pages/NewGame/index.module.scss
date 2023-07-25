@@ -7,9 +7,15 @@
   position: relative;
 
   &-header {
-    height: 80px;
     border-bottom: 1px solid $color-background;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+
+    img {
+      width: 110px;
+    }
   }
 
   &-content {
