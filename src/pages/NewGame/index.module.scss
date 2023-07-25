@@ -1,0 +1,12 @@
+.NewGame {
+  &-header {
+  }
+
+  &-content {
+  }
+
+  @include tablet {
+    &-header {
+    }
+  }
+}

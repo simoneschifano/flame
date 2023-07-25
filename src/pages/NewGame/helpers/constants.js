@@ -5,19 +5,19 @@ export const CATEGORIES_ID = [
 
 export const TIMER_DURATION = 4;
 
-// const state = {
-//   userData: {
-//     id: "uygcjhsbvkfsvn",
-//     username: "test",
-//     avatarId: 1,
-//     playedGames: [],
-//     highestScore: null,
-//     preferredDifficulty: null,
-//   },
-//   score: 0,
-//   currentStep: ["choose-username", "choose-difficulty", "quiz", "results"],
-// };
+export const INITIAL_GAME_STATE = {
+  userData: null,
+  score: 0,
+  questions: [],
+  currentQuestionIndex: 0,
+};
 
+export const NEW_GAME_ROUTES = {
+  CHOOSE_USERNAME: "choose-username",
+  CHOOSE_DIFFICULTY: "choose-difficulty",
+  QUIZ: "quiz",
+  RESULTS: "results",
+};
 // if(user)
 // dispatch('TYPE', user)
 

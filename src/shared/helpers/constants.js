@@ -31,3 +31,9 @@ export const AVATARS = {
   14: avatar14,
   15: avatar15,
 };
+
+export const ROUTES = {
+  LANDING: "/",
+  NEW_GAME: "/new-game",
+  LEADERBOARD: "/leaderboard",
+};

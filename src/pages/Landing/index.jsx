@@ -1,8 +1,11 @@
 import { getUsers, addUser } from "@/shared/helpers/api";
 import { getRandomQuestions } from "../NewGame/helpers/utilities";
 import Timer from "../NewGame/components/Timer";
+import { useCurrentStep } from "../NewGame/helpers/hooks";
 
 const Landing = () => {
+  const currentStep = useCurrentStep();
+  console.log(currentStep);
   return (
     <div>
       <button
