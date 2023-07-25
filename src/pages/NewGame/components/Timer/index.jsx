@@ -24,11 +24,9 @@ const Timer = ({ onExpire }) => {
   }, [onExpire, seconds]);
 
   return (
-    !!seconds && (
-      <div>
-        <h2>{Math.round(seconds * 10) / 10} seconds</h2>
-      </div>
-    )
+    <div>
+      <h2>{Math.round(seconds * 10) / 10} seconds</h2>
+    </div>
   );
 };
 

@@ -41,9 +41,9 @@ export const getRandomQuestions = async (difficulty) => {
 
   const questions = await Promise.all(promises);
 
-  console.log(
-    questions.flat().map((questionObj) => processQuestionObject(questionObj))
-  );
+  return questions
+    .flat()
+    .map((questionObj) => processQuestionObject(questionObj));
 };
 
 export const generateUser = (username, avatarId) => ({
