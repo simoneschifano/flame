@@ -3,21 +3,35 @@ export const CATEGORIES_ID = [
   29, 30, 31, 32,
 ];
 
-export const TIMER_DURATION = 4;
+export const DIFFICULTIES = [
+  { value: "easy", label: "Easy" },
+  { value: "medium", label: "Medium" },
+  { value: "hard", label: "Hard" },
+];
 
-// const state = {
-//   userData: {
-//     id: "uygcjhsbvkfsvn",
-//     username: "test",
-//     avatarId: 1,
-//     playedGames: [],
-//     highestScore: null,
-//     preferredDifficulty: null,
-//   },
-//   score: 0,
-//   currentStep: ["choose-username", "choose-difficulty", "quiz", "results"],
-// };
+export const TIMER_DURATION = 7;
 
+export const INITIAL_GAME_STATE = {
+  userData: null,
+  score: 0,
+  questions: [],
+  currentQuestionIndex: 0,
+};
+
+export const GAME_STATE_ACTIONS = {
+  USER_INIT: "USER_INIT",
+  UPDATE_USER: "UPDATE_USER",
+  QUESTIONS_INIT: "QUESTIONS_INIT",
+  UPDATE_QUESTION_STATE: "UPDATE_QUESTION_STATE",
+  UPDATE_QUESTION_INDEX: "UPDATE_QUESTION_INDEX",
+};
+
+export const NEW_GAME_ROUTES = {
+  CHOOSE_USERNAME: "choose-username",
+  CHOOSE_DIFFICULTY: "choose-difficulty",
+  QUIZ: "quiz",
+  RESULTS: "results",
+};
 // if(user)
 // dispatch('TYPE', user)
 

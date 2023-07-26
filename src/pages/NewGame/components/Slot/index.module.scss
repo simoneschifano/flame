@@ -1,0 +1,28 @@
+.Slot {
+  border: 1px solid $color-accent;
+  border-radius: $border-radius--md;
+  color: $color-black;
+  cursor: pointer;
+  padding: 10px 16px;
+  text-align: center;
+  transition: all 0.2s;
+  vertical-align: middle;
+  width: 100%;
+  font-weight: 600;
+
+  &:hover {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  &--selected {
+    border-width: 3px;
+  }
+
+  &--correct {
+    background-color: $color-primary;
+  }
+
+  &--wrong {
+    background-color: $color-secondary;
+  }
+}

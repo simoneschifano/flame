@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState, useEffect, useRef } from "react";
 import { TIMER_DURATION } from "../../helpers/constants";
+import styles from "./index.module.scss";
 
 const Timer = ({ onExpire }) => {
   const [seconds, setSeconds] = useState(TIMER_DURATION);
@@ -24,8 +25,9 @@ const Timer = ({ onExpire }) => {
   }, [onExpire, seconds]);
 
   return (
-    <div>
-      <h2>{Math.round(seconds * 10) / 10} seconds</h2>
+    <div className={styles.Timer}>
+      <img src="" alt="" />
+      <span>{seconds > 0 ? Math.round(seconds * 10) / 10 : 0}s</span>
     </div>
   );
 };

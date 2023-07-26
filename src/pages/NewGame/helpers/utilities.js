@@ -23,6 +23,8 @@ const processQuestionObject = (questionObj) => {
   delete questionObj.incorrect_answers;
 
   questionObj.answers = answers;
+  questionObj.shouldShowCorrection = false;
+  questionObj.id = crypto.randomUUID();
 
   return questionObj;
 };
