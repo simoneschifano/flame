@@ -5,6 +5,7 @@ import { NEW_GAME_ROUTES } from "@/pages/NewGame/helpers/constants";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Quiz from "@/pages/NewGame/components/Quiz";
 import UserInit from "@/pages/NewGame/components/UserInit";
+import DifficultySelection from "@/pages/NewGame/components/DifficultySelection";
 const { LANDING, NEW_GAME, LEADERBOARD } = ROUTES;
 const { CHOOSE_USERNAME, CHOOSE_DIFFICULTY, QUIZ, RESULTS } = NEW_GAME_ROUTES;
 
@@ -15,7 +16,7 @@ const RoutesWrapper = () => {
 
       <Route path={NEW_GAME} element={<NewGame />}>
         <Route path={CHOOSE_USERNAME} element={<UserInit />} />
-        <Route path={CHOOSE_DIFFICULTY} element={<div />} />
+        <Route path={CHOOSE_DIFFICULTY} element={<DifficultySelection />} />
         <Route path={QUIZ} element={<Quiz />} />
         <Route path={RESULTS} element={<div />} />
         <Route

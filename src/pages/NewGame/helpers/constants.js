@@ -3,7 +3,13 @@ export const CATEGORIES_ID = [
   29, 30, 31, 32,
 ];
 
-export const TIMER_DURATION = 4;
+export const DIFFICULTIES = [
+  { value: "easy", label: "Easy" },
+  { value: "medium", label: "Medium" },
+  { value: "hard", label: "Hard" },
+];
+
+export const TIMER_DURATION = 7;
 
 export const INITIAL_GAME_STATE = {
   userData: null,
@@ -14,9 +20,10 @@ export const INITIAL_GAME_STATE = {
 
 export const GAME_STATE_ACTIONS = {
   USER_INIT: "USER_INIT",
-  UPDATE_AVATAR_ID: "UPDATE_AVATAR_ID",
-  UPDATE_PREFERRED_DIFFICULTY: "UPDATE_PREFERRED_DIFFICULTY",
+  UPDATE_USER: "UPDATE_USER",
+  QUESTIONS_INIT: "QUESTIONS_INIT",
   UPDATE_QUESTION_STATE: "UPDATE_QUESTION_STATE",
+  UPDATE_QUESTION_INDEX: "UPDATE_QUESTION_INDEX",
 };
 
 export const NEW_GAME_ROUTES = {
