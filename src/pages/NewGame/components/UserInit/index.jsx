@@ -49,7 +49,7 @@ const UserInit = () => {
     <Loader isContainerWide containerHeight={100} />
   ) : (
     <section className={styles.UserInit}>
-      <h2>Choose your username & avatar</h2>
+      <h3>Choose your username & avatar</h3>
       <CreatableSelect
         className={styles["UserInit-select"]}
         options={selectOptions}
@@ -62,7 +62,7 @@ const UserInit = () => {
       />
       {gameState.userData && (
         <>
-          <h2>Welcome {username}!</h2>
+          <h3>Welcome {username}!</h3>
           <AvatarList />
         </>
       )}
