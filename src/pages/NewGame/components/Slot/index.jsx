@@ -2,10 +2,10 @@ import PropTypes from "prop-types";
 import { useClassNames } from "@/shared/helpers/hooks";
 import styles from "./index.module.scss";
 
-const Answer = ({ children, variant, onClick }) => {
+const Slot = ({ children, variant, onClick }) => {
   const classNames = useClassNames([
-    styles.Answer,
-    variant && styles[`Answer--${variant}`],
+    styles.Slot,
+    variant && styles[`Slot--${variant}`],
   ]);
 
   return (
@@ -15,10 +15,10 @@ const Answer = ({ children, variant, onClick }) => {
   );
 };
 
-Answer.propTypes = {
+Slot.propTypes = {
   children: PropTypes.node.isRequired,
   variant: PropTypes.string,
   onClick: PropTypes.func.isRequired,
 };
 
-export default Answer;
+export default Slot;
