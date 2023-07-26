@@ -1,0 +1,79 @@
+.Landing {
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    width: 100%;
+
+    border-radius: $border-radius--sm;
+  }
+  &-logo {
+    display: flex;
+    justify-content: flex-start;
+    top: 5px;
+    left: 5px;
+    width: 100px;
+  }
+  &-infos {
+    display: flex;
+    justify-content: flex-end;
+    color: $color-accent;
+
+    list-style-type: none;
+    gap: 5px;
+
+    li:first-child {
+      padding-right: 5px;
+      border-right: 1px solid $color-background;
+    }
+  }
+
+  &-instructions {
+    border-radius: 71% 29% 54% 46% / 29% 35% 65% 71%;
+    border: $color-background;
+    background-color: $color-primary;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    animation: blob 9s ease-in-out infinite;
+  }
+}
+
+.newGameButton {
+  margin: 0;
+
+  font-size: large;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  background-color: $color-secondary-text;
+  color: $color-accent;
+  &:hover {
+    border: 3px solid $color-accent;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+}
+// @keyframes blob {
+//   0% {
+//     border-radius: 22% 70% 10% 76% / 35% 67% 15% 42%;
+//   }
+
+//   25% {
+//     border-radius: 62% 71% 22% 78% / 26% 85% 24% 60%;
+//   }
+//   49% {
+//     border-radius: 44% 56% 52% 48% / 30% 30% 70% 70%;
+//   }
+//   50% {
+//     border-radius: 44% 56% 52% 48% / 30% 30% 70% 70%;
+//     transform: rotate(360deg);
+//   }
+//   75% {
+//     border-radius: 62% 47% 86% 18% / 63% 65% 28% 10%;
+//   }
+
+//   100% {
+//     border-radius: 22% 70% 10% 76% / 35% 67% 15% 42%;
+//   }
+// }
