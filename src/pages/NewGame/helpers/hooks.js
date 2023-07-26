@@ -2,12 +2,8 @@ import { useLocation, useOutletContext } from "react-router-dom";
 import { useCallback } from "react";
 import { GAME_STATE_ACTIONS } from "./constants";
 
-const {
-  USER_INIT,
-  UPDATE_AVATAR_ID,
-  UPDATE_PREFERRED_DIFFICULTY,
-  UPDATE_QUESTION_STATE,
-} = GAME_STATE_ACTIONS;
+const { USER_INIT, UPDATE_USER, QUESTIONS_INIT, UPDATE_QUESTION_STATE } =
+  GAME_STATE_ACTIONS;
 
 export const useCurrentStep = () => {
   const location = useLocation();
@@ -25,14 +21,13 @@ export const useGameContext = () => {
     [dispatch]
   );
 
-  const updateAvatarId = useCallback(
-    (avatarId) => dispatch({ type: UPDATE_AVATAR_ID, payload: avatarId }),
+  const updateUser = useCallback(
+    (key, value) => dispatch({ type: UPDATE_USER, payload: { key, value } }),
     [dispatch]
   );
 
-  const updatePreferredDifficulty = useCallback(
-    (difficulty) =>
-      dispatch({ type: UPDATE_PREFERRED_DIFFICULTY, payload: difficulty }),
+  const initQuestions = useCallback(
+    (questions) => dispatch({ type: QUESTIONS_INIT, payload: questions }),
     [dispatch]
   );
 
@@ -45,8 +40,8 @@ export const useGameContext = () => {
   return {
     gameState: state,
     initUser,
-    updateAvatarId,
-    updatePreferredDifficulty,
+    updateUser,
+    initQuestions,
     updateQuestionState,
   };
 };

@@ -1,52 +1,38 @@
-import { useState } from "react";
-import { decodeHtml } from "../../helpers/utilities";
-import Answer from "../Answer";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { decodeHtml, getRandomQuestions } from "../../helpers/utilities";
+import Slot from "../Slot";
 import styles from "./index.module.scss";
-
-const test = {
-  category: "Entertainment: Books",
-  type: "multiple",
-  difficulty: "easy",
-  question:
-    "What is the name of the three headed dog in Harry Potter and the Sorcerer&#039;s Stone?",
-  answers: [
-    {
-      id: 1,
-      isCorrect: true,
-      text: "Fluffy",
-    },
-    {
-      id: 2,
-      isCorrect: false,
-      text: "Spike",
-    },
-    {
-      id: 3,
-      isCorrect: false,
-      text: "Poofy",
-    },
-    {
-      id: 4,
-      isCorrect: false,
-      text: "Spot",
-    },
-  ],
-  isValidated: false,
-  isAnswered: false,
-  id: "373a8d49-f372-4457-8b81-9f490701e058",
-};
+import { useGameContext } from "../../helpers/hooks";
+import Loader from "@/shared/components/Loader";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/shared/helpers/constants";
 
 const Quiz = () => {
-  // const { gameState } = useGameContext();
+  const { gameState, initQuestions } = useGameContext();
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [test1, setTest1] = useState(false);
-  //   const isAnswered =
-  //     gameState.questions[gameState.currentQuestionIndex].isAnswered;
+  const [isLoading, setIsLoading] = useState(false);
+
+  const dataFetchedRef = useRef(false);
+
+  const navigate = useNavigate();
+
+  const { userData, questions, currentQuestionIndex } = gameState;
+
+  const currentQuestion = questions?.[currentQuestionIndex];
+  const shouldShowCorrection = currentQuestion?.shouldShowCorrection;
+
+  const fetchQuestions = useCallback(async () => {
+    setIsLoading(true);
+    const results = await getRandomQuestions(userData?.preferredDifficulty);
+    initQuestions(results);
+    setIsLoading(false);
+  }, [userData?.preferredDifficulty, initQuestions]);
 
   const getVariant = (answer) => {
-    if (answer.id === selectedAnswer?.id && !test1) return "selected";
+    if (answer.id === selectedAnswer?.id && !shouldShowCorrection)
+      return "selected";
 
-    if (!test1) return null;
+    if (!shouldShowCorrection) return null;
 
     if (answer.id === selectedAnswer?.id && !selectedAnswer?.isCorrect)
       return "wrong";
@@ -55,18 +41,31 @@ const Quiz = () => {
     return null;
   };
 
-  return (
+  useEffect(() => {
+    if (dataFetchedRef.current) return;
+    dataFetchedRef.current = true;
+    fetchQuestions();
+  }, [fetchQuestions]);
+
+  useEffect(() => {
+    setSelectedAnswer(null);
+  }, [currentQuestion?.id]);
+
+  if (!userData?.preferredDifficulty) navigate(ROUTES.NEW_GAME);
+  return isLoading ? (
+    <Loader isContainerWide containerHeight={100} />
+  ) : (
     <section className={styles.Quiz}>
-      {test.answers.map((answer) => (
-        <Answer
+      <h3>{decodeHtml(currentQuestion?.question)}</h3>
+      {currentQuestion?.answers.map((answer) => (
+        <Slot
           key={answer.id}
           variant={getVariant(answer)}
           onClick={() => setSelectedAnswer(answer)}
         >
           {decodeHtml(answer.text)}
-        </Answer>
+        </Slot>
       ))}
-      <button onClick={() => setTest1(true)}>test</button>
     </section>
   );
 };

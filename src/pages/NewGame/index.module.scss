@@ -10,11 +10,30 @@
     border-bottom: 1px solid $color-background;
     width: 100%;
     display: flex;
-    justify-content: center;
-    padding: 15px 0;
+    justify-content: space-between;
+    padding: $spacing--lg $spacing--xl;
 
-    img {
+    &Back {
+      outline: none;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      img {
+        width: 30px;
+      }
+    }
+
+    &Logo {
       width: 110px;
+    }
+
+    &Avatar {
+      width: 50px;
+
+      &--hidden {
+        visibility: hidden;
+      }
     }
   }
 
@@ -47,12 +66,12 @@
     gap: $spacing--md;
     border-top: 1px solid $color-background;
 
-    button {
+    > div {
       width: 100%;
     }
 
     @include tablet {
-      button {
+      > div {
         width: 250px;
       }
     }

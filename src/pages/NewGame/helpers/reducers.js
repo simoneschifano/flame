@@ -2,42 +2,48 @@ import { GAME_STATE_ACTIONS } from "./constants";
 
 const {
   USER_INIT,
-  UPDATE_AVATAR_ID,
-  UPDATE_PREFERRED_DIFFICULTY,
+  UPDATE_USER,
+  QUESTIONS_INIT,
+  UPDATE_QUESTION_INDEX,
   UPDATE_QUESTION_STATE,
 } = GAME_STATE_ACTIONS;
 
 export const gameReducer = (state, action) => {
   const { type, payload } = action;
-  const { userData, questions, currentQuestionIndex } = state;
 
   switch (type) {
     case USER_INIT:
       return { ...state, userData: payload };
 
-    case UPDATE_AVATAR_ID:
-      return {
-        ...state,
-        userData: { ...userData, avatarId: payload },
-      };
+    case UPDATE_USER: {
+      const { key, value } = payload;
 
-    case UPDATE_PREFERRED_DIFFICULTY:
-      return {
-        ...state,
-        userData: { ...userData, preferredDifficulty: payload },
-      };
+      return { ...state, userData: { ...state.userData, [key]: value } };
+    }
+
+    case QUESTIONS_INIT:
+      return { ...state, questions: payload };
 
     case UPDATE_QUESTION_STATE: {
       const { key, value } = payload;
-      const updatedQuestions = [...questions];
-      updatedQuestions[currentQuestionIndex][key] = value;
+      const updatedQuestions = [...state.questions];
+      updatedQuestions[state.currentQuestionIndex][key] = value;
 
-      return { ...state, questions: updatedQuestions };
+      return {
+        ...state,
+        questions: updatedQuestions,
+      };
     }
-    // case "DELETE_TODO":
-    //   return state.filter((todo) => todo.id !== payload);
-    // case "UPDATE_TODO":
-    //   return state.map((todo) => (todo.id === payload.id ? payload : todo));
+
+    case UPDATE_QUESTION_INDEX:
+      if (state.currentQuestionIndex === state.questions.length - 1)
+        return state;
+
+      return {
+        ...state,
+        currentQuestionIndex: state.currentQuestionIndex + 1,
+      };
+
     default:
       return state;
   }
