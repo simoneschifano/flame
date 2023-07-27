@@ -51,11 +51,20 @@ const Quiz = () => {
     setSelectedAnswer(null);
   }, [currentQuestion?.id]);
 
+  let progressPercentage =
+    ((currentQuestionIndex + 1) / questions.length) * 100 + "%";
+
   if (!userData?.preferredDifficulty) navigate(ROUTES.NEW_GAME);
   return isLoading ? (
     <Loader isContainerWide containerHeight={100} />
   ) : (
     <section className={styles.Quiz}>
+      <div className={styles.progressBarContainer}>
+        <div
+          className={styles.progressBar}
+          style={{ width: progressPercentage }}
+        ></div>
+      </div>
       <h3>{decodeHtml(currentQuestion?.question)}</h3>
       {currentQuestion?.answers.map((answer) => (
         <Slot
