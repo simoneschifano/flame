@@ -23,10 +23,9 @@ const Landing = () => {
         <Timer onExpire={() => {}} />
         <h1>Ready to win? ⏰</h1>
         <p>
-          Immerse yourself in our thrilling quiz game, where quick thinking
-          brings you to the top. With diverse question categories and three
-          difficulty levels, the challenge is on! Track your progress and aim
-          for the top score to become the ultimate quiz champion.
+          Quick thinking brings you to the top! The challenge is on! Track your
+          progress and aim for the top score to become the ultimate quiz
+          champion.
         </p>
       </div>
       <Button onClick={() => navigate(ROUTES.NEW_GAME)}>Play now</Button>
