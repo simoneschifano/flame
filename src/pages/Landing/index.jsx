@@ -6,6 +6,8 @@ import Button from "@/shared/components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/shared/helpers/constants";
 import Timer from "../NewGame/components/Timer";
+import CreatorList from "./components/CreatorsList";
+import { CREATORS } from "./helpers/constants";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ const Landing = () => {
         </Link>
       </header>
       <div className={styles["Landing-hero"]}>
-        <Timer onExpire={() => {}} />
+        <Timer onExpire={() => { }} />
         <h1>Ready to win? ⏰</h1>
         <p>
           Immerse yourself in our thrilling quiz game, where quick thinking
@@ -75,6 +77,9 @@ const Landing = () => {
               would captivate and entertain users through a sleek, minimalist
               design.
             </p>
+          </div>
+          <div>
+            <CreatorList creators={CREATORS} />
           </div>
         </section>
       </article>

@@ -1,7 +1,7 @@
-import mari from "@assets/images/creator-mari.jpg";
-// import fra from '@assets/images/creator-fra.jpg';
-import lore from "@assets/images/creator-lore.jpg";
-import andre from "@assets/images/creator-andre.jpg";
+import mari from "@/assets/images/creator-mari.png";
+import fra from '@/assets/images/creator-fra.jpg';
+import lore from "@/assets/images/creator-lore.jpg";
+import andre from "@/assets/images/creator-andre.jpg";
 
 export const CREATORS = [
   {
@@ -14,8 +14,8 @@ export const CREATORS = [
   {
     username: "Desdemus",
     name: "Francesco Imperiale",
-    profileImage: "",
-    linkedInUrl: "",
+    profileImage: fra,
+    linkedInUrl: "https://www.linkedin.com/in/francesco-imperiale-8980a5b1/",
     githubUrl: "https://github.com/Desdemus",
   },
   {
