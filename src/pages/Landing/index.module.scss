@@ -109,17 +109,20 @@
       }
 
       &Item {
-        text-align: left;
-        color: white;
         margin-bottom: 50px;
-
-        > h2 {
-          margin-bottom: 15px;
-        }
+        opacity: 0.8;
 
         > h2,
         > p {
-          opacity: 0.8;
+          text-align: left;
+          margin-bottom: 15px;
+          color: white;
+        }
+
+        &:last-child {
+          > h2 {
+            text-align: center;
+          }
         }
       }
     }
