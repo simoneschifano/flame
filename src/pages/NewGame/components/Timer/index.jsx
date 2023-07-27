@@ -26,8 +26,6 @@ const Timer = ({ onExpire }) => {
     clearInterval(timerRef.current);
   }, [onExpire, seconds]);
 
-  console.log(Math.round(seconds * 100) / 100);
-
   return (
     <div className={styles.Timer}>
       <img src={stopwatchIcon} alt="" />
@@ -36,7 +34,7 @@ const Timer = ({ onExpire }) => {
           ? seconds.toString().length < 3
             ? `${seconds}.0`
             : seconds
-          : 0}
+          : "0.0"}
         s
       </span>
     </div>
