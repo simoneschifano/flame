@@ -6,6 +6,7 @@ import { useGameContext } from "../../helpers/hooks";
 import Loader from "@/shared/components/Loader";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/shared/helpers/constants";
+import Timer from "../Timer";
 
 const Quiz = () => {
   const { gameState, initQuestions } = useGameContext();
@@ -56,6 +57,7 @@ const Quiz = () => {
     <Loader isContainerWide containerHeight={100} />
   ) : (
     <section className={styles.Quiz}>
+      <Timer onExpire={() => {}} />
       <h3>{decodeHtml(currentQuestion?.question)}</h3>
       {currentQuestion?.answers.map((answer) => (
         <Slot

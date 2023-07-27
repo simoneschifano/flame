@@ -5,7 +5,6 @@ import arrowBlack from "@/assets/svg/arrow-back.svg";
 import Button from "@/shared/components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/shared/helpers/constants";
-import Timer from "../NewGame/components/Timer";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -20,7 +19,6 @@ const Landing = () => {
         </Link>
       </header>
       <div className={styles["Landing-hero"]}>
-        <Timer onExpire={() => {}} />
         <h1>Ready to win? ⏰</h1>
         <p>
           Quick thinking brings you to the top! The challenge is on! Track your

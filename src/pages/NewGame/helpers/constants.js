@@ -9,7 +9,7 @@ export const DIFFICULTIES = [
   { value: "hard", label: "Hard" },
 ];
 
-export const TIMER_DURATION = 7;
+export const TIMER_DURATION = 20;
 
 export const INITIAL_GAME_STATE = {
   userData: null,
