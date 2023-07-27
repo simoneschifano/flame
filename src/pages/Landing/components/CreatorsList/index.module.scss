@@ -1,0 +1,51 @@
+.CreatorsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing--lg;
+  justify-content: center;
+  margin-top: $spacing--xl;
+
+  &-creator {
+    padding: $spacing--md;
+    background-color: $color-background;
+    border-radius: $border-radius--sm;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing--md;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
+
+    h4 {
+      color: $color-black;
+      word-wrap: break-word;
+      margin: 0;
+    }
+
+    h6 {
+      margin: 0;
+      opacity: 0.6;
+    }
+
+    &Links {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    a {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: $color-accent;
+    }
+
+    img {
+      border-radius: $border-radius--sm;
+      width: 140px;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { getQuestions } from "./api";
 import { CATEGORIES_ID } from "./constants";
+import { shuffle } from "@/shared/helpers/utilities";
 
 export const decodeHtml = (html) => {
   const txt = document.createElement("textarea");
@@ -22,7 +23,7 @@ const processQuestionObject = (questionObj) => {
   delete questionObj.correct_answer;
   delete questionObj.incorrect_answers;
 
-  questionObj.answers = answers;
+  questionObj.answers = shuffle(answers);
   questionObj.shouldShowCorrection = false;
   questionObj.id = crypto.randomUUID();
 

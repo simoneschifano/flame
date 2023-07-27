@@ -5,7 +5,7 @@ import arrowBlack from "@/assets/svg/arrow-back.svg";
 import Button from "@/shared/components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/shared/helpers/constants";
-import Timer from "../NewGame/components/Timer";
+import CreatorList from "./components/CreatorsList";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -20,13 +20,11 @@ const Landing = () => {
         </Link>
       </header>
       <div className={styles["Landing-hero"]}>
-        <Timer onExpire={() => {}} />
         <h1>Ready to win? ⏰</h1>
         <p>
-          Immerse yourself in our thrilling quiz game, where quick thinking
-          brings you to the top. With diverse question categories and three
-          difficulty levels, the challenge is on! Track your progress and aim
-          for the top score to become the ultimate quiz champion.
+          Quick thinking brings you to the top! The challenge is on! Track your
+          progress and aim for the top score to become the ultimate quiz
+          champion.
         </p>
       </div>
       <Button onClick={() => navigate(ROUTES.NEW_GAME)}>Play now</Button>
@@ -75,6 +73,47 @@ const Landing = () => {
               would captivate and entertain users through a sleek, minimalist
               design.
             </p>
+          </div>
+          <div className={styles["Landing-aboutUs-contentItem"]}>
+            <h2>The Team</h2>
+            <p>
+              Our application&apos;s logo and name were born from a unique
+              combination of our team members&apos; first initials, along with
+              the common bond that unites us: Edgemony, the bootcamp that
+              challenged us to create this project.
+            </p>
+            <p>
+              Thus, FLAME was formed, representing the first letters of our
+              names: Francesco Imperiale, Lorenzo Fraterrigo Garofalo, Andrea
+              Paracino, Marina Valenza, and Edgemony itself. FLAME is not just
+              any quiz!
+            </p>
+            <p>
+              The name perfectly complements the game&apos;s dynamics,
+              highlighting the significance of the scoring logic, which
+              we&apos;ll discuss shortly. It also reflects our shared influences
+              and a touch of experimental style.
+            </p>
+            <p>
+              FLAME is all about engaging and stimulating the mind. We drew
+              inspiration from the knowledge and skills we gained at
+              Edgemony&apos;s bootcamp, which fueled our excitement to embark on
+              this project. Our collective experience shaped our approach to
+              create a quiz that challenges users while keeping the experience
+              enjoyable.
+            </p>
+            <p>
+              The FLAME logo symbolizes the unity and knowledge-seeking passion
+              of our team. The fusion of our initials signifies not only
+              collaboration but also the blending of diverse ideas and
+              perspectives we bring to the table. Our goal is to spark curiosity
+              and intellect in our users, making their quiz journey an
+              enlightening and entertaining adventure.
+            </p>
+          </div>
+          <div className={styles["Landing-aboutUs-contentItem"]}>
+            <h2>Our ✨Flames✨</h2>
+            <CreatorList />
           </div>
         </section>
       </article>
