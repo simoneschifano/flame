@@ -7,6 +7,7 @@ import Loader from "@/shared/components/Loader";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/shared/helpers/constants";
 import ProgressBar from "../ProgressBar";
+import Timer from "../Timer";
 
 const Quiz = () => {
   const { gameState, initQuestions } = useGameContext();
@@ -57,6 +58,7 @@ const Quiz = () => {
   ) : (
     <section className={styles.Quiz}>
       <ProgressBar />
+      <Timer onExpire={() => {}} />
       <h3>{decodeHtml(currentQuestion?.question)}</h3>
       {currentQuestion?.answers.map((answer) => (
         <Slot

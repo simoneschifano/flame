@@ -5,7 +5,6 @@ import arrowBlack from "@/assets/svg/arrow-back.svg";
 import Button from "@/shared/components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/shared/helpers/constants";
-import Timer from "../NewGame/components/Timer";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -20,13 +19,11 @@ const Landing = () => {
         </Link>
       </header>
       <div className={styles["Landing-hero"]}>
-        <Timer onExpire={() => {}} />
         <h1>Ready to win? ⏰</h1>
         <p>
-          Immerse yourself in our thrilling quiz game, where quick thinking
-          brings you to the top. With diverse question categories and three
-          difficulty levels, the challenge is on! Track your progress and aim
-          for the top score to become the ultimate quiz champion.
+          Quick thinking brings you to the top! The challenge is on! Track your
+          progress and aim for the top score to become the ultimate quiz
+          champion.
         </p>
       </div>
       <Button onClick={() => navigate(ROUTES.NEW_GAME)}>Play now</Button>

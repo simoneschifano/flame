@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState, useEffect, useRef } from "react";
 import { TIMER_DURATION } from "../../helpers/constants";
 import styles from "./index.module.scss";
+import stopwatchIcon from "@/assets/svg/stopwatch.svg";
 
 const Timer = ({ onExpire }) => {
   const [seconds, setSeconds] = useState(TIMER_DURATION);
@@ -9,7 +10,8 @@ const Timer = ({ onExpire }) => {
 
   useEffect(() => {
     const intervalId = setInterval(
-      () => setSeconds((prevSeconds) => prevSeconds - 0.1),
+      () =>
+        setSeconds((prevSeconds) => Math.round((prevSeconds - 0.1) * 10) / 10),
       100
     );
     timerRef.current = intervalId;
@@ -26,8 +28,15 @@ const Timer = ({ onExpire }) => {
 
   return (
     <div className={styles.Timer}>
-      <img src="" alt="" />
-      <span>{seconds > 0 ? Math.round(seconds * 10) / 10 : 0}s</span>
+      <img src={stopwatchIcon} alt="" />
+      <span>
+        {seconds > 0
+          ? seconds.toString().length < 3
+            ? `${seconds}.0`
+            : seconds
+          : "0.0"}
+        s
+      </span>
     </div>
   );
 };

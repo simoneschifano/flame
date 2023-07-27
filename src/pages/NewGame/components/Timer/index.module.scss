@@ -1,0 +1,29 @@
+.Timer {
+  width: 80px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #feedd6;
+  padding: 4px 9px;
+  border-radius: $border-radius--xl;
+  font-weight: 600;
+  animation: pulsate 1.7s infinite;
+  opacity: 0.6;
+  color: $color-secondary;
+  margin-left: auto;
+
+  img {
+    width: 22px;
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
