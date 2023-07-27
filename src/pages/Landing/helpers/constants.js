@@ -1,16 +1,9 @@
 import mari from "@/assets/images/creator-mari.png";
-import fra from '@/assets/images/creator-fra.jpg';
+import fra from "@/assets/images/creator-fra.jpg";
 import lore from "@/assets/images/creator-lore.jpg";
 import andre from "@/assets/images/creator-andre.jpg";
 
 export const CREATORS = [
-  {
-    username: "Marinavalenza",
-    name: "Marina Valenza",
-    profileImage: mari,
-    linkedInUrl: "https://www.linkedin.com/in/marina-valenza-365129152",
-    githubUrl: "https://github.com/Marinavalenza",
-  },
   {
     username: "Desdemus",
     name: "Francesco Imperiale",
@@ -31,5 +24,12 @@ export const CREATORS = [
     profileImage: andre,
     linkedInUrl: "https://www.linkedin.com/in/andrea-paracino",
     githubUrl: "https://github.com/andreparacino",
+  },
+  {
+    username: "Marinavalenza",
+    name: "Marina Valenza",
+    profileImage: mari,
+    linkedInUrl: "https://www.linkedin.com/in/marina-valenza-365129152",
+    githubUrl: "https://github.com/Marinavalenza",
   },
 ];
