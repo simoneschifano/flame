@@ -13,6 +13,7 @@ const {
   CONCLUDE_GAME,
 } = GAME_STATE_ACTIONS;
 const { CHOOSE_USERNAME, CHOOSE_DIFFICULTY, QUIZ, RESULTS } = NEW_GAME_ROUTES;
+const { LEADERBOARD } = ROUTES;
 
 export const useCurrentStep = () => {
   const location = useLocation();
@@ -196,7 +197,7 @@ export const useNavigation = (state, dispatch) => {
       }
 
       case RESULTS:
-        navigate("/");
+        navigate("../" + LEADERBOARD);
     }
   };
 
