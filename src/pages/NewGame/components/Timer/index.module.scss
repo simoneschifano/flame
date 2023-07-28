@@ -9,10 +9,16 @@
   animation: pulsate 1.7s infinite;
   opacity: 0.6;
   color: $color-secondary;
-  margin-left: auto;
+  margin: 0 auto;
+  margin-top: $spacing--lg;
 
   img {
     width: 22px;
+  }
+
+  &--stop {
+    animation: none;
+    opacity: 1;
   }
 }
 

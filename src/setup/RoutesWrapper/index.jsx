@@ -13,7 +13,6 @@ const RoutesWrapper = () => {
   return (
     <Routes>
       <Route path={LANDING} element={<Landing />} />
-
       <Route path={NEW_GAME} element={<NewGame />}>
         <Route path={CHOOSE_USERNAME} element={<UserInit />} />
         <Route path={CHOOSE_DIFFICULTY} element={<DifficultySelection />} />
@@ -25,9 +24,7 @@ const RoutesWrapper = () => {
         />
         <Route path="*" element={<Navigate to={NEW_GAME} replace />} />
       </Route>
-
       <Route path={LEADERBOARD} element={<NewGame />} />
-
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

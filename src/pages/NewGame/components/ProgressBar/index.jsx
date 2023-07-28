@@ -1,7 +1,8 @@
+import { memo } from "react";
 import { useGameContext } from "../../helpers/hooks";
 import styles from "./index.module.scss";
 
-const ProgressBar = () => {
+const ProgressBar = memo(() => {
   const { gameState } = useGameContext();
   const { questions, currentQuestionIndex } = gameState;
 
@@ -16,6 +17,8 @@ const ProgressBar = () => {
       />
     </div>
   );
-};
+});
+
+ProgressBar.displayName = "ProgressBar";
 
 export default ProgressBar;

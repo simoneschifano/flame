@@ -9,21 +9,22 @@ export const DIFFICULTIES = [
   { value: "hard", label: "Hard" },
 ];
 
-export const TIMER_DURATION = 20;
+export const TIMER_DURATION = 19.9;
 
 export const INITIAL_GAME_STATE = {
   userData: null,
-  score: 0,
+  finalScore: null,
   questions: [],
   currentQuestionIndex: 0,
+  isCtaLoading: false,
 };
 
 export const GAME_STATE_ACTIONS = {
-  USER_INIT: "USER_INIT",
+  OVERWRITE_STATE: "OVERWRITE_STATE",
   UPDATE_USER: "UPDATE_USER",
-  QUESTIONS_INIT: "QUESTIONS_INIT",
-  UPDATE_QUESTION_STATE: "UPDATE_QUESTION_STATE",
+  UPDATE_QUESTION: "UPDATE_QUESTION",
   UPDATE_QUESTION_INDEX: "UPDATE_QUESTION_INDEX",
+  CONCLUDE_GAME: "CONCLUDE_GAME",
 };
 
 export const NEW_GAME_ROUTES = {
@@ -32,10 +33,10 @@ export const NEW_GAME_ROUTES = {
   QUIZ: "quiz",
   RESULTS: "results",
 };
-// if(user)
-// dispatch('TYPE', user)
 
-// if(!user)
-// const newUser = generateUser('test', 1);
-// dispatch('TYPE', newUser)
-// addUser(newUser)
+const [EASY, MEDIUM, HARD] = DIFFICULTIES.map((difficulty) => difficulty.value);
+export const MULTIPLIER = {
+  [EASY]: 1,
+  [MEDIUM]: 2,
+  [HARD]: 3,
+};

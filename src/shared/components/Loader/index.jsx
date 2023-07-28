@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import styles from "./index.module.scss";
 import { useClassNames } from "@/shared/helpers/hooks";
+import { memo } from "react";
 
-const Loader = ({ isContainerWide, containerHeight }) => {
+const Loader = memo(({ isContainerWide, containerHeight, className }) => {
   const classNames = useClassNames([
     styles.Loader,
     isContainerWide && styles["Loader--wide"],
+    className,
   ]);
 
   return (
@@ -20,11 +22,14 @@ const Loader = ({ isContainerWide, containerHeight }) => {
       </div>
     </div>
   );
-};
+});
 
 Loader.propTypes = {
   isContainerWide: PropTypes.bool,
   containerHeight: PropTypes.number,
+  className: PropTypes.string,
 };
+
+Loader.displayName = "Loader";
 
 export default Loader;

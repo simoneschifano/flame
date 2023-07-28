@@ -1,8 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { decodeHtml, getRandomQuestions } from "../../helpers/utilities";
+import { useCallback } from "react";
+import { decodeHtml } from "../../helpers/utilities";
 import Slot from "../Slot";
 import styles from "./index.module.scss";
-import { useGameContext } from "../../helpers/hooks";
+import {
+  useGameContext,
+  useRetrieveQuestions,
+  useScoringLogic,
+} from "../../helpers/hooks";
 import Loader from "@/shared/components/Loader";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/shared/helpers/constants";
@@ -10,60 +14,47 @@ import ProgressBar from "../ProgressBar";
 import Timer from "../Timer";
 
 const Quiz = () => {
-  const { gameState, initQuestions } = useGameContext();
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const dataFetchedRef = useRef(false);
+  const { gameState, currentQuestion } = useGameContext();
+  const shouldShowCorrection = currentQuestion?.shouldShowCorrection;
 
   const navigate = useNavigate();
 
-  const { userData, questions, currentQuestionIndex } = gameState;
+  const isLoading = useRetrieveQuestions();
+  const { selectedAnswer, setSelectedAnswer, handleTimerExpiration } =
+    useScoringLogic();
 
-  const currentQuestion = questions?.[currentQuestionIndex];
-  const shouldShowCorrection = currentQuestion?.shouldShowCorrection;
+  const isSelectedCorrect = selectedAnswer?.isCorrect;
+  const selectedAnswerId = selectedAnswer?.id;
 
-  const fetchQuestions = useCallback(async () => {
-    const results = await getRandomQuestions(userData?.preferredDifficulty);
-    initQuestions(results);
-    setIsLoading(false);
-  }, [userData?.preferredDifficulty, initQuestions]);
+  const getAnswerDisplayVariant = useCallback(
+    ({ id, isCorrect }) => {
+      if (id === selectedAnswerId && !shouldShowCorrection) return "selected";
 
-  const getVariant = (answer) => {
-    if (answer.id === selectedAnswer?.id && !shouldShowCorrection)
-      return "selected";
+      if (!shouldShowCorrection) return null;
 
-    if (!shouldShowCorrection) return null;
+      if (id === selectedAnswerId && !isSelectedCorrect) return "wrong";
+      if (isCorrect) return "correct";
 
-    if (answer.id === selectedAnswer?.id && !selectedAnswer?.isCorrect)
-      return "wrong";
-    if (answer.isCorrect) return "correct";
+      return null;
+    },
+    [selectedAnswerId, isSelectedCorrect, shouldShowCorrection]
+  );
 
-    return null;
-  };
-
-  useEffect(() => {
-    if (dataFetchedRef.current) return;
-    dataFetchedRef.current = true;
-    fetchQuestions();
-  }, [fetchQuestions]);
-
-  useEffect(() => {
-    setSelectedAnswer(null);
-  }, [currentQuestion?.id]);
-
-  if (!userData?.preferredDifficulty) navigate(ROUTES.NEW_GAME);
+  if (!gameState.userData?.preferredDifficulty) navigate(ROUTES.NEW_GAME);
   return isLoading ? (
     <Loader isContainerWide containerHeight={100} />
   ) : (
     <section className={styles.Quiz}>
+      <Timer
+        shouldStop={shouldShowCorrection}
+        onExpire={handleTimerExpiration}
+      />
       <ProgressBar />
-      <Timer onExpire={() => {}} />
-      <h3>{decodeHtml(currentQuestion?.question)}</h3>
+      <h4>{decodeHtml(currentQuestion?.question)}</h4>
       {currentQuestion?.answers.map((answer) => (
         <Slot
           key={answer.id}
-          variant={getVariant(answer)}
+          variant={getAnswerDisplayVariant(answer)}
           onClick={() => setSelectedAnswer(answer)}
         >
           {decodeHtml(answer.text)}

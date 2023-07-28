@@ -1,19 +1,21 @@
 import { GAME_STATE_ACTIONS } from "./constants";
+import { generateGameLog } from "./utilities";
 
 const {
-  USER_INIT,
+  OVERWRITE_STATE,
   UPDATE_USER,
-  QUESTIONS_INIT,
   UPDATE_QUESTION_INDEX,
-  UPDATE_QUESTION_STATE,
+  UPDATE_QUESTION,
+  CONCLUDE_GAME,
 } = GAME_STATE_ACTIONS;
 
 export const gameReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case USER_INIT:
-      return { ...state, userData: payload };
+    case OVERWRITE_STATE: {
+      return { ...state, ...payload };
+    }
 
     case UPDATE_USER: {
       const { key, value } = payload;
@@ -21,10 +23,7 @@ export const gameReducer = (state, action) => {
       return { ...state, userData: { ...state.userData, [key]: value } };
     }
 
-    case QUESTIONS_INIT:
-      return { ...state, questions: payload };
-
-    case UPDATE_QUESTION_STATE: {
+    case UPDATE_QUESTION: {
       const { key, value } = payload;
       const updatedQuestions = [...state.questions];
       updatedQuestions[state.currentQuestionIndex][key] = value;
@@ -43,6 +42,28 @@ export const gameReducer = (state, action) => {
         ...state,
         currentQuestionIndex: state.currentQuestionIndex + 1,
       };
+
+    case CONCLUDE_GAME: {
+      const finalScore = Math.round(
+        state.questions.reduce((acc, curr) => acc + curr.score, 0) /
+          state.questions.length
+      );
+
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          ...(finalScore > (state.userData.highestScore || 0) && {
+            highestScore: finalScore,
+          }),
+          playedGames: [
+            ...state.userData.playedGames,
+            generateGameLog(finalScore),
+          ],
+        },
+        finalScore,
+      };
+    }
 
     default:
       return state;
