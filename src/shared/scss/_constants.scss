@@ -3,9 +3,12 @@
 // COLORS
 $color-black: #252a34;
 $color-background: #eaeaea;
-$color-primary: #08d9d6;
+$color-primary: #9bcdd2;
 $color-secondary: #fd7979;
+$color-secondary-text: #ffff;
 $color-accent: #056573;
+$color-green: #8eac50;
+$color-red: #f24c3d;
 
 // BREAKPOINT
 $breakpoint-xs: 0px;
@@ -23,6 +26,7 @@ $border-radius--xl: rem(40px);
 $spacing--sm: rem(5px);
 $spacing--md: rem(10px);
 $spacing--lg: rem(15px);
+$spacing--xl: rem(25px);
 
 // FONT
 $base-font: "Inter", sans-serif;
@@ -38,6 +42,6 @@ $z-snackbar: 1400;
 $z-tooltip: 1500;
 
 // BOX-SHADOW
-// $box-shadow--sm: 0px 8px 16px 0px #00000009;
-// $box-shadow--md: 0px 12px 16px 0px #00000009;
-// $box-shadow--lg: 0px 8px 24px 0px #00000014;
+$box-shadow--sm: 0px 8px 16px 0px #00000009;
+$box-shadow--md: 0px 12px 16px 0px #00000009;
+$box-shadow--lg: 0px 8px 24px 0px #00000014;

@@ -1,5 +1,7 @@
+import { AVATARS } from "@/shared/helpers/constants";
 import { getQuestions } from "./api";
-import { CATEGORIES_ID } from "./constants";
+import { CATEGORIES_ID, MULTIPLIER, TIMER_DURATION } from "./constants";
+import { shuffle } from "@/shared/helpers/utilities";
 
 export const decodeHtml = (html) => {
   const txt = document.createElement("textarea");
@@ -22,7 +24,10 @@ const processQuestionObject = (questionObj) => {
   delete questionObj.correct_answer;
   delete questionObj.incorrect_answers;
 
-  questionObj.answers = answers;
+  questionObj.answers = shuffle(answers);
+  questionObj.shouldShowCorrection = false;
+  questionObj.id = crypto.randomUUID();
+  questionObj.score = null;
 
   return questionObj;
 };
@@ -54,3 +59,17 @@ export const generateUser = (username, avatarId) => ({
   preferredDifficulty: null,
   playedGames: [],
 });
+
+export const generateGameLog = (score) => ({
+  id: crypto.randomUUID(),
+  date: new Date(),
+  score,
+});
+
+export const getAvatarFromUserId = (usersList, userId) =>
+  AVATARS[usersList.find((user) => user.id === userId)?.avatarId];
+
+export const getSingleQuestionScore = (responseTime, difficulty) =>
+  Math.round(
+    (1 - responseTime / TIMER_DURATION / 2 / MULTIPLIER[difficulty]) * 1000
+  );

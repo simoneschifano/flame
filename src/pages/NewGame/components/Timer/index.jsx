@@ -1,20 +1,32 @@
 import PropTypes from "prop-types";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { TIMER_DURATION } from "../../helpers/constants";
+import styles from "./index.module.scss";
+import stopwatchIcon from "@/assets/svg/stopwatch.svg";
+import { useGameContext } from "../../helpers/hooks";
+import { getCleanedUpClassNames } from "@/shared/helpers/utilities";
 
-const Timer = ({ onExpire }) => {
+const Timer = ({ shouldStop, onExpire }) => {
   const [seconds, setSeconds] = useState(TIMER_DURATION);
   const timerRef = useRef(null);
 
-  useEffect(() => {
+  const { currentQuestion } = useGameContext();
+
+  const initTimerInterval = useCallback(() => {
+    setSeconds(TIMER_DURATION);
     const intervalId = setInterval(
-      () => setSeconds((prevSeconds) => prevSeconds - 0.1),
+      () =>
+        setSeconds((prevSeconds) => Math.round((prevSeconds - 0.1) * 10) / 10),
       100
     );
     timerRef.current = intervalId;
-
-    return () => clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    initTimerInterval();
+
+    return () => clearInterval(timerRef.current);
+  }, [currentQuestion?.id, initTimerInterval]);
 
   useEffect(() => {
     if (seconds > 0) return;
@@ -23,14 +35,25 @@ const Timer = ({ onExpire }) => {
     clearInterval(timerRef.current);
   }, [onExpire, seconds]);
 
+  useEffect(() => {
+    if (shouldStop) clearInterval(timerRef.current);
+  }, [shouldStop]);
+
   return (
-    <div>
-      <h2>{Math.round(seconds * 10) / 10} seconds</h2>
+    <div
+      className={getCleanedUpClassNames([
+        styles.Timer,
+        (!seconds || shouldStop) && styles["Timer--stop"],
+      ])}
+    >
+      <img src={stopwatchIcon} alt="" />
+      <span>{seconds.toString().length < 3 ? `${seconds}.0` : seconds}s</span>
     </div>
   );
 };
 
 Timer.propTypes = {
+  shouldStop: PropTypes.bool.isRequired,
   onExpire: PropTypes.func.isRequired,
 };
 

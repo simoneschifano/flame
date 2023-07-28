@@ -1,6 +1,5 @@
-import { generateUser } from "@/pages/NewGame/helpers/utilities";
 import { db } from "@/plugins/firebase";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 
 export const getUsers = async () => {
   const users = [];
@@ -10,10 +9,10 @@ export const getUsers = async () => {
   return users;
 };
 
-export const addUser = async (username, avatarId) => {
+export const updateUserCollection = async (user) => {
   try {
-    await addDoc(collection(db, "users"), generateUser(username, avatarId));
+    await setDoc(doc(db, "users", user.id), user);
   } catch (e) {
-    console.error("Error adding user: ", e);
+    console.error("Error updating user: ", e);
   }
 };

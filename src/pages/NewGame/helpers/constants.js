@@ -3,25 +3,40 @@ export const CATEGORIES_ID = [
   29, 30, 31, 32,
 ];
 
-export const TIMER_DURATION = 4;
+export const DIFFICULTIES = [
+  { value: "easy", label: "Easy" },
+  { value: "medium", label: "Medium" },
+  { value: "hard", label: "Hard" },
+];
 
-// const state = {
-//   userData: {
-//     id: "uygcjhsbvkfsvn",
-//     username: "test",
-//     avatarId: 1,
-//     playedGames: [],
-//     highestScore: null,
-//     preferredDifficulty: null,
-//   },
-//   score: 0,
-//   currentStep: ["choose-username", "choose-difficulty", "quiz", "results"],
-// };
+export const TIMER_DURATION = 19.9;
 
-// if(user)
-// dispatch('TYPE', user)
+export const INITIAL_GAME_STATE = {
+  userData: null,
+  finalScore: null,
+  questions: [],
+  currentQuestionIndex: 0,
+  isCtaLoading: false,
+};
 
-// if(!user)
-// const newUser = generateUser('test', 1);
-// dispatch('TYPE', newUser)
-// addUser(newUser)
+export const GAME_STATE_ACTIONS = {
+  OVERWRITE_STATE: "OVERWRITE_STATE",
+  UPDATE_USER: "UPDATE_USER",
+  UPDATE_QUESTION: "UPDATE_QUESTION",
+  UPDATE_QUESTION_INDEX: "UPDATE_QUESTION_INDEX",
+  CONCLUDE_GAME: "CONCLUDE_GAME",
+};
+
+export const NEW_GAME_ROUTES = {
+  CHOOSE_USERNAME: "choose-username",
+  CHOOSE_DIFFICULTY: "choose-difficulty",
+  QUIZ: "quiz",
+  RESULTS: "results",
+};
+
+const [EASY, MEDIUM, HARD] = DIFFICULTIES.map((difficulty) => difficulty.value);
+export const MULTIPLIER = {
+  [EASY]: 1,
+  [MEDIUM]: 2,
+  [HARD]: 3,
+};

@@ -1,0 +1,17 @@
+.DifficultySelection {
+  &-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    div:nth-child(1) {
+      color: $color-green;
+    }
+    div:nth-child(2) {
+      color: #f2be22;
+    }
+    div:nth-child(3) {
+      color: $color-red;
+    }
+  }
+}
