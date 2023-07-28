@@ -1,11 +1,11 @@
 .Landing {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
   align-items: center;
 
   &-header {
-    padding: $spacing--xl;
+    padding: $spacing--lg;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,6 +16,7 @@
     a {
       text-decoration: none;
       color: $color-black;
+      font-weight: 600;
 
       img {
         opacity: 0;
@@ -58,18 +59,30 @@
   }
 
   &-hero {
-    border-radius: 71% 29% 54% 46% / 29% 35% 65% 71%;
-    border: $color-background;
-    background-color: $color-primary;
-    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
     text-align: center;
     max-width: 90%;
-    margin-bottom: 30px;
-    color: $color-black;
-    > p {
-      font-size: 1.2rem;
+    margin: 100px 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1.2);
     }
-    // animation: blob 9s ease-in-out infinite;
+
+    &Logo {
+      width: 350px;
+    }
+
+    // > p {
+    //   font-size: 1.2rem;
+    // }
   }
 
   &-aboutUs {
@@ -121,6 +134,7 @@
 
         &:last-child {
           > h2 {
+            margin-top: 80px;
             text-align: center;
           }
         }
@@ -129,6 +143,10 @@
   }
 
   @include tablet {
+    &-header {
+      padding: $spacing--xl 40px;
+    }
+
     &-hero {
       max-width: 460px;
     }
