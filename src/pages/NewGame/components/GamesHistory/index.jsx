@@ -4,14 +4,16 @@ import { getFlamesFromScore } from "../../helpers/utilities";
 
 const GamesHistory = () => {
   const { gameState } = useGameContext();
+
   return (
     <div className={styles.GamesHistory}>
       {gameState.userData.playedGames.map(({ id, score, date }) => (
         <div key={id} className={styles["GamesHistory-singleGame"]}>
+          <span>📅 {date}</span>
           <span>
-            {score} {getFlamesFromScore(score)}
+            {getFlamesFromScore(score)}
+            {score}
           </span>
-          <span>{date}</span>
         </div>
       ))}
     </div>
