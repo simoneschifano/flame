@@ -1,4 +1,4 @@
-import { CREATORS } from "../../helpers/constants";
+import { CREATORS } from "@/pages/Landing/helpers/constants";
 import styles from "./index.module.scss";
 
 const CreatorList = () => {

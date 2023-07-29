@@ -61,7 +61,8 @@
   &-hero {
     text-align: center;
     max-width: 90%;
-    margin: 100px 0;
+    margin-top: 80px;
+    margin-bottom: 120px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -79,10 +80,6 @@
     &Logo {
       width: 350px;
     }
-
-    // > p {
-    //   font-size: 1.2rem;
-    // }
   }
 
   &-aboutUs {
@@ -167,26 +164,3 @@
     }
   }
 }
-// @keyframes blob {
-//   0% {
-//     border-radius: 22% 70% 10% 76% / 35% 67% 15% 42%;
-//   }
-
-//   25% {
-//     border-radius: 62% 71% 22% 78% / 26% 85% 24% 60%;
-//   }
-//   49% {
-//     border-radius: 44% 56% 52% 48% / 30% 30% 70% 70%;
-//   }
-//   50% {
-//     border-radius: 44% 56% 52% 48% / 30% 30% 70% 70%;
-//     transform: rotate(360deg);
-//   }
-//   75% {
-//     border-radius: 62% 47% 86% 18% / 63% 65% 28% 10%;
-//   }
-
-//   100% {
-//     border-radius: 22% 70% 10% 76% / 35% 67% 15% 42%;
-//   }
-// }
