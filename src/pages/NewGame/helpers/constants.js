@@ -12,11 +12,11 @@ export const DIFFICULTIES = [
 export const TIMER_DURATION = 19.9;
 
 export const INITIAL_GAME_STATE = {
+  roomData: null,
   userData: null,
   finalScore: null,
   questions: [],
   currentQuestionIndex: 0,
-  isCtaLoading: false,
 };
 
 export const GAME_STATE_ACTIONS = {
@@ -28,6 +28,7 @@ export const GAME_STATE_ACTIONS = {
 };
 
 export const NEW_GAME_ROUTES = {
+  CHOOSE_ROOM: "choose-room",
   CHOOSE_USERNAME: "choose-username",
   CHOOSE_DIFFICULTY: "choose-difficulty",
   QUIZ: "quiz",

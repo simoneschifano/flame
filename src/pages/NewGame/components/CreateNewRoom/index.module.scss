@@ -1,0 +1,20 @@
+.CreateNewRoom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing--xl;
+
+  h4 {
+    margin: 0;
+    text-align: center;
+
+    &:first-child {
+      color: $color-primary;
+    }
+  }
+
+  &-cta {
+    max-width: 300px;
+  }
+}
