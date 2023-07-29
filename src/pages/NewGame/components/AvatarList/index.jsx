@@ -1,6 +1,6 @@
 import { AVATARS } from "@/shared/helpers/constants";
 import styles from "./index.module.scss";
-import { useGameContext } from "../../helpers/hooks";
+import { useGameContext } from "@/pages/NewGame/helpers/hooks";
 import { getCleanedUpClassNames } from "@/shared/helpers/utilities";
 
 const AvatarList = () => {

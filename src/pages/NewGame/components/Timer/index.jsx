@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { TIMER_DURATION } from "../../helpers/constants";
+import { TIMER_DURATION } from "@/pages/NewGame/helpers/constants";
 import styles from "./index.module.scss";
 import stopwatchIcon from "@/assets/svg/stopwatch.svg";
-import { useGameContext } from "../../helpers/hooks";
+import { useGameContext } from "@/pages/NewGame/helpers/hooks";
 import { getCleanedUpClassNames } from "@/shared/helpers/utilities";
 
 const Timer = ({ shouldStop, onExpire }) => {
