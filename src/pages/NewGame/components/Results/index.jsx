@@ -10,9 +10,9 @@ const Results = () => {
       <ConfettiExplosion />
       <div className={styles["Results-hero"]}>
         <h1>Congratulations!</h1>
-        <h2>You scored {gameState.finalScore} 🔥pt.</h2>
+        <h2>You scored {gameState.finalScore} pt.</h2>
       </div>
-      <div className={styles["Results-card-title"]}>
+      <div className={styles["Results-cardTitle"]}>
         <p>👑 History 👑</p>
         <GamesHistory />
       </div>

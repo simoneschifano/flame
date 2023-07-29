@@ -1,5 +1,6 @@
 import styles from "../Landing/index.module.scss";
-import logo from "@/assets/brand/logo-word.png";
+import logo from "@/assets/brand/logo-word.svg";
+import logoSmall from "@/assets/brand/logo-small.svg";
 import arrow from "@/assets/svg/arrow-back--white.svg";
 import arrowBlack from "@/assets/svg/arrow-back.svg";
 import Button from "@/shared/components/Button";
@@ -13,10 +14,10 @@ const Landing = () => {
   return (
     <main className={styles.Landing}>
       <header className={styles["Landing-header"]}>
-        <img className={styles["Landing-logo"]} src={logo} alt="logo-word" />
+        <img className={styles["Landing-logo"]} src={logoSmall} alt="logo-word" />
         <Link to={ROUTES.LEADERBOARD}>
           <img src={arrowBlack} alt="" />
-          Leaderboard 🏆
+          Leaderboard
         </Link>
       </header>
       <div className={styles["Landing-hero"]}>
