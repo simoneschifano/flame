@@ -6,9 +6,8 @@
   margin-top: $spacing--xl;
 
   &-creator {
-    opacity: 0.8;
     padding: $spacing--md $spacing--lg;
-    background-color: $color-background;
+    background-color: white;
     border-radius: $border-radius--sm;
     display: flex;
     flex-direction: column;

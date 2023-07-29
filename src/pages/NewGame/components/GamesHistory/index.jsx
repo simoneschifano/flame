@@ -8,10 +8,9 @@ const GamesHistory = () => {
     <div className={styles.GamesHistory}>
       {gameState.userData.playedGames.map(({ id, score, date }) => (
         <div key={id} className={styles["GamesHistory-singleGame"]}>
-          <span>
-            {score} {scoreFlamer(score)}
+          <span>Points: {score} {scoreFlamer(score)}
           </span>
-          <span>{date}</span>
+          <span>{date}📅</span>
         </div>
       ))}
     </div>

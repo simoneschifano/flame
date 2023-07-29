@@ -8,10 +8,12 @@ const Results = () => {
     <section className={styles.Results}>
       <div className={styles["Results-hero"]}>
         <h1>Congratulations!</h1>
-        <h2>You scored: {` ${gameState.finalScore}`} pt</h2>
+        <h2>You scored: {gameState.finalScore} 🔥pt.</h2>
       </div>
-      <h4>History</h4>
-      <GamesHistory />
+      <div className={styles["Results-card-title"]}>
+        <p>👑 History 👑</p>
+        <GamesHistory />
+      </div>
     </section>
   );
 };

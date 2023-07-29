@@ -1,15 +1,38 @@
 .Results {
-  background-color: #f5be0380;
+  background-color: white;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  margin: auto 0;
 
   h1 {
-    color: $color-secondary;
+    background: linear-gradient(
+      90deg,
+      rgba(253, 121, 121, 1),
+      rgba(245, 190, 3, 1)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
-  h4 {
+  p {
     margin-bottom: 2px;
+    background-color: white;
+    font-size: 22px;
+    border-radius: 10px;
+    padding: 2px;
+    width: 200px;
+    translate: 50%;
+  }
+  &-card-title {
+    background-color: $color-primary;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 10px;
+    padding-top: 1px;
+  }
+  &-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 }
