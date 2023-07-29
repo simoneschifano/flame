@@ -8,3 +8,13 @@ export const shuffle = (array) => {
   }
   return array;
 };
+
+export const upsertById = (array, newPayload) => {
+  const id = newPayload.id;
+  const existingIndex = array?.findIndex((obj) => obj.id === id);
+
+  if (existingIndex !== -1) array[existingIndex] = newPayload;
+  else array = [...array, newPayload];
+
+  return array;
+};

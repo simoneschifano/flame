@@ -1,18 +1,19 @@
 import { Outlet } from "react-router-dom";
 import styles from "./index.module.scss";
-import { INITIAL_GAME_STATE } from "./helpers/constants";
+import { INITIAL_GAME_STATE, NEW_GAME_ROUTES } from "./helpers/constants";
 import Button from "@/shared/components/Button";
 import { gameReducer } from "./helpers/reducers";
 import { useReducer } from "react";
-import { useNavigation } from "./helpers/hooks";
+import { useCurrentStep, useNavigation } from "./helpers/hooks";
 import Header from "./components/Header";
 
 const NewGame = () => {
   const [state, dispatch] = useReducer(gameReducer, INITIAL_GAME_STATE);
+  const currentStep = useCurrentStep();
 
   const {
     isLoading,
-    evaluateNextStep,
+    reachNextStep,
     evaluatedCtaCopy,
     navigateBack,
     ctaDisabledMessage,
@@ -27,15 +28,17 @@ const NewGame = () => {
       <section className={styles["NewGame-content"]}>
         <Outlet context={{ state, dispatch }} />
       </section>
-      <footer className={styles["NewGame-footer"]}>
-        <Button
-          isLoading={isLoading}
-          onClick={evaluateNextStep}
-          disabledMessage={ctaDisabledMessage}
-        >
-          {evaluatedCtaCopy}
-        </Button>
-      </footer>
+      {currentStep !== NEW_GAME_ROUTES.CHOOSE_ROOM && (
+        <footer className={styles["NewGame-footer"]}>
+          <Button
+            isLoading={isLoading}
+            onClick={reachNextStep}
+            disabledMessage={ctaDisabledMessage}
+          >
+            {evaluatedCtaCopy}
+          </Button>
+        </footer>
+      )}
     </main>
   );
 };

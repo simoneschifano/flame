@@ -1,27 +1,23 @@
 import { useCallback } from "react";
-import { decodeHtml } from "../../helpers/utilities";
+import { decodeHtml } from "@/pages/NewGame/helpers/utilities";
 import Slot from "../Slot";
 import styles from "./index.module.scss";
 import {
   useGameContext,
+  useRedirectCheck,
   useRetrieveQuestions,
   useScoringLogic,
-} from "../../helpers/hooks";
+} from "@/pages/NewGame/helpers/hooks";
 import Loader from "@/shared/components/Loader";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "@/shared/helpers/constants";
 import ProgressBar from "../ProgressBar";
 import Timer from "../Timer";
 
 const Quiz = () => {
-  const { gameState, currentQuestion } = useGameContext();
+  const { currentQuestion, updateQuestionState } = useGameContext();
   const shouldShowCorrection = currentQuestion?.shouldShowCorrection;
 
-  const navigate = useNavigate();
-
   const isLoading = useRetrieveQuestions();
-  const { selectedAnswer, setSelectedAnswer, handleTimerExpiration } =
-    useScoringLogic();
+  const { selectedAnswer, setSelectedAnswer } = useScoringLogic();
 
   const isSelectedCorrect = selectedAnswer?.isCorrect;
   const selectedAnswerId = selectedAnswer?.id;
@@ -40,14 +36,20 @@ const Quiz = () => {
     [selectedAnswerId, isSelectedCorrect, shouldShowCorrection]
   );
 
-  if (!gameState.userData?.preferredDifficulty) navigate(ROUTES.NEW_GAME);
+  useRedirectCheck();
+
   return isLoading ? (
     <Loader isContainerWide containerHeight={100} />
   ) : (
     <section className={styles.Quiz}>
       <Timer
         shouldStop={shouldShowCorrection}
-        onExpire={handleTimerExpiration}
+        onExpire={() =>
+          updateQuestionState({
+            shouldShowCorrection: true,
+            score: 0,
+          })
+        }
       />
       <ProgressBar />
       <h4>{decodeHtml(currentQuestion?.question)}</h4>

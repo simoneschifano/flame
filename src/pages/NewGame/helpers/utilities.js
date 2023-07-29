@@ -1,6 +1,12 @@
 import { AVATARS } from "@/shared/helpers/constants";
 import { getQuestions } from "./api";
-import { CATEGORIES_ID, MULTIPLIER, TIMER_DURATION } from "./constants";
+import {
+  CATEGORIES_ID,
+  MULTIPLIER,
+  TIMER_DURATION,
+  NEW_GAME_ROUTES,
+} from "./constants";
+import { ROUTES } from "@/shared/helpers/constants";
 import { shuffle } from "@/shared/helpers/utilities";
 
 export const decodeHtml = (html) => {
@@ -66,10 +72,25 @@ export const generateGameLog = (score) => ({
   score,
 });
 
+export const generateRoomObject = (id) => ({
+  id,
+  // TODO: use date utility
+  createdAt: new Date(),
+  users: [],
+});
+
 export const getAvatarFromUserId = (usersList, userId) =>
-  AVATARS[usersList.find((user) => user.id === userId)?.avatarId];
+  AVATARS[usersList?.find((user) => user.id === userId)?.avatarId];
 
 export const getSingleQuestionScore = (responseTime, difficulty) =>
   Math.round(
     (1 - responseTime / TIMER_DURATION / 2 / MULTIPLIER[difficulty]) * 1000
   );
+
+export const generateRoomId = () =>
+  String(Math.floor(100000 + Math.random() * 900000));
+
+export const getRoomUrl = (id) =>
+  `${window.location.origin.toString()}${ROUTES.NEW_GAME}/${
+    NEW_GAME_ROUTES.CHOOSE_ROOM
+  }?id=${id}`;

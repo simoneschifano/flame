@@ -1,16 +1,21 @@
 import PropTypes from "prop-types";
-import { getCleanedUpClassNames } from "@/shared/helpers/utilities";
 import styles from "./index.module.scss";
-import { NEW_GAME_ROUTES } from "../../helpers/constants";
+import { NEW_GAME_ROUTES } from "@/pages/NewGame/helpers/constants";
 import arrowBlack from "@/assets/svg/arrow-back.svg";
 import logo from "@/assets/brand/logo-word.png";
-import { useCurrentStep } from "../../helpers/hooks";
+import { useCurrentStep } from "@/pages/NewGame/helpers/hooks";
 import { AVATARS } from "@/shared/helpers/constants";
+import { useClassNames } from "@/shared/helpers/hooks";
 
-const { CHOOSE_USERNAME } = NEW_GAME_ROUTES;
+const { CHOOSE_ROOM, CHOOSE_USERNAME } = NEW_GAME_ROUTES;
 
 const Header = ({ handleBack, userAvatarId }) => {
   const currentStep = useCurrentStep();
+  const avatarClassNames = useClassNames([
+    styles["Header-avatar"],
+    [CHOOSE_ROOM, CHOOSE_USERNAME].includes(currentStep) &&
+      styles["Header-avatar--hidden"],
+  ]);
 
   return (
     <header className={styles.Header}>
@@ -18,14 +23,7 @@ const Header = ({ handleBack, userAvatarId }) => {
         <img src={arrowBlack} alt="" />
       </button>
       <img className={styles["Header-logo"]} src={logo} alt="" />
-      <img
-        className={getCleanedUpClassNames([
-          styles["Header-avatar"],
-          currentStep === CHOOSE_USERNAME && styles["Header-avatar--hidden"],
-        ])}
-        src={AVATARS?.[userAvatarId]}
-        alt=""
-      />
+      <img className={avatarClassNames} src={AVATARS?.[userAvatarId]} alt="" />
     </header>
   );
 };
