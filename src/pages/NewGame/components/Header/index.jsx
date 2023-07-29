@@ -3,7 +3,7 @@ import { getCleanedUpClassNames } from "@/shared/helpers/utilities";
 import styles from "./index.module.scss";
 import { NEW_GAME_ROUTES } from "../../helpers/constants";
 import arrowBlack from "@/assets/svg/arrow-back.svg";
-import logo from "@/assets/brand/logo-word.png";
+import logo from "@/assets/brand/logo-word.svg";
 import { useCurrentStep } from "../../helpers/hooks";
 import { AVATARS } from "@/shared/helpers/constants";
 

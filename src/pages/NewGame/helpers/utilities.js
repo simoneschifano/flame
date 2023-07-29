@@ -60,9 +60,17 @@ export const generateUser = (username, avatarId) => ({
   playedGames: [],
 });
 
+function getCurrentDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
 export const generateGameLog = (score) => ({
   id: crypto.randomUUID(),
-  date: new Date(),
+  date: getCurrentDate(),
   score,
 });
 
@@ -73,3 +81,10 @@ export const getSingleQuestionScore = (responseTime, difficulty) =>
   Math.round(
     (1 - responseTime / TIMER_DURATION / 2 / MULTIPLIER[difficulty]) * 1000
   );
+
+export const getFlamesFromScore = (score) => {
+  if (score > 666) return "🔥🔥🔥";
+  if (score > 333) return "🔥🔥";
+  if (score >= 1) return "🔥";
+  return "";
+};

@@ -6,6 +6,7 @@ import { gameReducer } from "./helpers/reducers";
 import { useReducer } from "react";
 import { useNavigation } from "./helpers/hooks";
 import Header from "./components/Header";
+import GamesHistory from "./components/GamesHistory";
 
 const NewGame = () => {
   const [state, dispatch] = useReducer(gameReducer, INITIAL_GAME_STATE);
