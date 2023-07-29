@@ -82,8 +82,9 @@ export const getSingleQuestionScore = (responseTime, difficulty) =>
     (1 - responseTime / TIMER_DURATION / 2 / MULTIPLIER[difficulty]) * 1000
   );
 
-export function scoreFlamer(score) {
-  if (score < 333) return "🔥";
-  else if (score < 666) return "🔥🔥";
-  else if (score >= 666) return "🔥🔥🔥";
-}
+export const getFlamesFromScore = (score) => {
+  if (score > 666) return "🔥🔥🔥";
+  if (score > 333) return "🔥🔥";
+  if (score >= 1) return "🔥";
+  return "";
+};
