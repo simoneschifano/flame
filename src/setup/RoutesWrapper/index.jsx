@@ -3,10 +3,13 @@ import NewGame from "@/pages/NewGame";
 import { ROUTES } from "@/shared/helpers/constants";
 import { NEW_GAME_ROUTES } from "@/pages/NewGame/helpers/constants";
 import { Navigate, Route, Routes } from "react-router-dom";
+import Results from "@/pages/NewGame/components/Results";
 import Quiz from "@/pages/NewGame/components/Quiz";
 import UserInit from "@/pages/NewGame/components/UserInit";
 import DifficultySelection from "@/pages/NewGame/components/DifficultySelection";
 import RoomSelection from "@/pages/NewGame/components/RoomSelection";
+import Leaderboard from "@/pages/Leaderboard";
+
 const { LANDING, NEW_GAME, LEADERBOARD } = ROUTES;
 const { CHOOSE_ROOM, CHOOSE_USERNAME, CHOOSE_DIFFICULTY, QUIZ, RESULTS } =
   NEW_GAME_ROUTES;
@@ -20,11 +23,11 @@ const RoutesWrapper = () => {
         <Route path={CHOOSE_USERNAME} element={<UserInit />} />
         <Route path={CHOOSE_DIFFICULTY} element={<DifficultySelection />} />
         <Route path={QUIZ} element={<Quiz />} />
-        <Route path={RESULTS} element={<div />} />
+        <Route path={RESULTS} element={<Results />} />
         <Route index element={<Navigate to={CHOOSE_ROOM} replace />} />
         <Route path="*" element={<Navigate to={CHOOSE_ROOM} replace />} />
       </Route>
-      <Route path={LEADERBOARD} element={<NewGame />} />
+      <Route path={LEADERBOARD} element={<Leaderboard />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

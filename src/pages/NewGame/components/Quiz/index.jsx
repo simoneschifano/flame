@@ -22,6 +22,13 @@ const Quiz = () => {
   const isSelectedCorrect = selectedAnswer?.isCorrect;
   const selectedAnswerId = selectedAnswer?.id;
 
+  const handleTimerExpiration = useCallback(() => {
+    updateQuestionState({
+      shouldShowCorrection: true,
+      score: 0,
+    });
+  }, [updateQuestionState]);
+
   const getAnswerDisplayVariant = useCallback(
     ({ id, isCorrect }) => {
       if (id === selectedAnswerId && !shouldShowCorrection) return "selected";
@@ -44,12 +51,7 @@ const Quiz = () => {
     <section className={styles.Quiz}>
       <Timer
         shouldStop={shouldShowCorrection}
-        onExpire={() =>
-          updateQuestionState({
-            shouldShowCorrection: true,
-            score: 0,
-          })
-        }
+        onExpire={handleTimerExpiration}
       />
       <ProgressBar />
       <h4>{decodeHtml(currentQuestion?.question)}</h4>

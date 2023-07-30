@@ -13,6 +13,10 @@
     width: 100%;
     border-radius: $border-radius--sm;
 
+    > img {
+      width: 40px;
+    }
+
     a {
       text-decoration: none;
       color: $color-black;
@@ -60,7 +64,8 @@
 
   &-hero {
     text-align: center;
-    max-width: 90%;
+    max-width: 80%;
+    margin: 0 auto;
     margin-top: 80px;
     margin-bottom: 120px;
     position: relative;
@@ -120,7 +125,7 @@
 
       &Item {
         margin-bottom: 50px;
-        opacity: 0.8;
+        //opacity: 0.8;
 
         > h2,
         > p {

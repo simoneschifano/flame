@@ -5,7 +5,7 @@
   cursor: pointer;
   padding: 10px 16px;
   text-align: center;
-  transition: border-width 0.2s, background-color 0.3s, box-shadow 0.3s;
+  transition: box-shadow 0.3s;
   vertical-align: middle;
   width: 100%;
   font-weight: 600;
@@ -15,8 +15,14 @@
   }
 
   &--selected {
+    transition: border-width 0.2s, box-shadow 0.3s;
     border-width: 3px;
     pointer-events: none;
+  }
+
+  &--correct,
+  &--wrong {
+    transition: color 0.3s, border-width 0.2s, background-color 0.3s;
   }
 
   &--correct {

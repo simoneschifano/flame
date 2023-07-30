@@ -21,7 +21,7 @@ const {
 } = GAME_STATE_ACTIONS;
 const { CHOOSE_ROOM, CHOOSE_USERNAME, CHOOSE_DIFFICULTY, QUIZ, RESULTS } =
   NEW_GAME_ROUTES;
-const { LANDING, NEW_GAME } = ROUTES;
+const { LEADERBOARD, LANDING, NEW_GAME } = ROUTES;
 
 export const useCurrentStep = () => {
   const location = useLocation();
@@ -265,7 +265,7 @@ export const useNavigation = (state, dispatch) => {
       }
 
       case RESULTS:
-        navigate(CHOOSE_ROOM);
+        navigate("../" + LEADERBOARD);
         break;
 
       default:
