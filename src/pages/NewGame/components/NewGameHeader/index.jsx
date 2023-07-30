@@ -23,7 +23,15 @@ const NewGameHeader = ({ handleBack, userAvatarId }) => {
         <img src={arrowBlack} alt="" />
       </button>
       <img className={styles["NewGameHeader-logo"]} src={logo} alt="" />
-      <img className={avatarClassNames} src={AVATARS?.[userAvatarId]} alt="" />
+      {userAvatarId ? (
+        <img
+          className={avatarClassNames}
+          src={AVATARS?.[userAvatarId]}
+          alt=""
+        />
+      ) : (
+        <div className={styles["NewGameHeader-avatarPlaceholder"]} />
+      )}
     </header>
   );
 };
