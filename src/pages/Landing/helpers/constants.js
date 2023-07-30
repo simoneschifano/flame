@@ -1,7 +1,7 @@
-import mari from "@/assets/images/creator-mari.png";
-import fra from "@/assets/images/creator-fra.jpg";
-import lore from "@/assets/images/creator-lore.jpg";
-import andre from "@/assets/images/creator-andre.jpg";
+import mari from "@/assets/images/creator-mari.webp";
+import fra from "@/assets/images/creator-fra.webp";
+import lore from "@/assets/images/creator-lore.webp";
+import andre from "@/assets/images/creator-andre.webp";
 
 export const CREATORS = [
   {
@@ -15,7 +15,8 @@ export const CREATORS = [
     username: "LorenzoFG95",
     name: "Lorenzo Fraterrigo Garofalo",
     profileImage: lore,
-    linkedInUrl: "",
+    linkedInUrl:
+      "https://www.linkedin.com/in/lorenzo-fraterrigo-garofalo-91a66319b/",
     githubUrl: "https://github.com/LorenzoFG95",
   },
   {

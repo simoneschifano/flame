@@ -49,6 +49,10 @@
     display: grid;
     place-content: center;
   }
+
+  &--grows {
+    flex-grow: 1;
+  }
 }
 @keyframes dotCircle {
   25% {

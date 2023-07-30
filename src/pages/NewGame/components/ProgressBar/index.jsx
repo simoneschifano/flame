@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { useGameContext } from "../../helpers/hooks";
+import { useGameContext } from "@/pages/NewGame/helpers/hooks";
 import styles from "./index.module.scss";
 
 const ProgressBar = memo(() => {

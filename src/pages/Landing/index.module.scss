@@ -1,7 +1,7 @@
 .Landing {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: $spacing--xl;
   align-items: center;
 
   &-header {
@@ -12,6 +12,10 @@
     color: white;
     width: 100%;
     border-radius: $border-radius--sm;
+
+    > img {
+      width: 40px;
+    }
 
     a {
       text-decoration: none;
@@ -24,7 +28,7 @@
         transition: opacity 0.3s, transform 0.3s;
         transform: rotate(180deg) translateX(7px);
         margin-bottom: -4px;
-        margin-right: 4px;
+        margin-right: $spacing--sm;
       }
 
       &:hover {
@@ -36,32 +40,12 @@
     }
   }
 
-  &-logo {
-    display: flex;
-    justify-content: flex-start;
-    top: 5px;
-    left: 5px;
-    width: 100px;
-  }
-
-  &-links {
-    display: flex;
-    justify-content: flex-end;
-    color: $color-accent;
-    list-style-type: none;
-    gap: 15px;
-
-    > div {
-      height: 20px;
-      width: 1px;
-      background-color: $color-black;
-    }
-  }
-
   &-hero {
     text-align: center;
-    max-width: 90%;
-    margin: 100px 0;
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 80px;
+    margin-bottom: 120px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -79,10 +63,6 @@
     &Logo {
       width: 350px;
     }
-
-    // > p {
-    //   font-size: 1.2rem;
-    // }
   }
 
   &-aboutUs {
@@ -123,12 +103,11 @@
 
       &Item {
         margin-bottom: 50px;
-        opacity: 0.8;
 
         > h2,
         > p {
           text-align: left;
-          margin-bottom: 15px;
+          margin-bottom: $spacing--lg;
           color: white;
         }
 
@@ -167,26 +146,3 @@
     }
   }
 }
-// @keyframes blob {
-//   0% {
-//     border-radius: 22% 70% 10% 76% / 35% 67% 15% 42%;
-//   }
-
-//   25% {
-//     border-radius: 62% 71% 22% 78% / 26% 85% 24% 60%;
-//   }
-//   49% {
-//     border-radius: 44% 56% 52% 48% / 30% 30% 70% 70%;
-//   }
-//   50% {
-//     border-radius: 44% 56% 52% 48% / 30% 30% 70% 70%;
-//     transform: rotate(360deg);
-//   }
-//   75% {
-//     border-radius: 62% 47% 86% 18% / 63% 65% 28% 10%;
-//   }
-
-//   100% {
-//     border-radius: 22% 70% 10% 76% / 35% 67% 15% 42%;
-//   }
-// }

@@ -1,0 +1,44 @@
+.NewGameHeader {
+  border-bottom: 1px solid $color-background;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: $spacing--lg;
+
+  &-back {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    display: grid;
+    place-items: center;
+
+    img {
+      width: 30px;
+    }
+  }
+
+  &-logo {
+    width: 110px;
+  }
+
+  &-avatar {
+    width: 50px;
+    opacity: 1;
+
+    &--hidden {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    &Placeholder {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  @include tablet {
+    padding: $spacing--lg $spacing--xl;
+  }
+}
