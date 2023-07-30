@@ -1,6 +1,6 @@
 import { AVATARS } from "@/shared/helpers/constants";
 import styles from "./index.module.scss";
-import { useGameContext } from "../../helpers/hooks";
+import { useGameContext } from "@/pages/NewGame/helpers/hooks";
 import { getCleanedUpClassNames } from "@/shared/helpers/utilities";
 
 const AvatarList = () => {
@@ -22,6 +22,9 @@ const AvatarList = () => {
           }
         />
       ))}
+      <a href="https://www.freepik.com/free-vector/set-people-avatars-isolated-round-icons-faces_28590618.htm#query=avatar&position=38&from_view=keyword&track=sph">
+        Credits for the avatars design to upklyak on Freepik
+      </a>
     </section>
   );
 };

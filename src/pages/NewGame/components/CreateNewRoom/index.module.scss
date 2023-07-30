@@ -1,0 +1,33 @@
+.CreateNewRoom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing--xl;
+  padding: $spacing--xl $spacing--lg;
+
+  h1 {
+    margin: 0;
+    color: white;
+    margin-bottom: $spacing--lg;
+  }
+  h4 {
+    margin: 0;
+    text-align: center;
+    color: white;
+  }
+
+  > img {
+    transform: rotate(-90deg);
+    width: 60px;
+  }
+
+  &-cta {
+    max-width: 300px;
+  }
+
+  &--created {
+    border-radius: $border-radius--md;
+    background-color: $color-primary;
+  }
+}

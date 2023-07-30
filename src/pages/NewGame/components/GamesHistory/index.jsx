@@ -7,7 +7,7 @@ const GamesHistory = () => {
 
   return (
     <div className={styles.GamesHistory}>
-      {gameState.userData.playedGames.map(({ id, score, date }) => (
+      {gameState.userData?.playedGames.reverse().map(({ id, score, date }) => (
         <div key={id} className={styles["GamesHistory-singleGame"]}>
           <span>📅 {date}</span>
           <span>

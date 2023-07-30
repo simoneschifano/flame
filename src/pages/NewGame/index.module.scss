@@ -7,7 +7,7 @@
   position: relative;
 
   &-content {
-    padding: $spacing--xl;
+    padding: $spacing--lg;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -33,7 +33,7 @@
     z-index: $z-fab;
     justify-content: center;
     align-items: center;
-    padding: $spacing--xl;
+    padding: $spacing--xl $spacing--lg;
     box-shadow: 0 4px 20px #0000000d;
     gap: $spacing--md;
     border-top: 1px solid $color-background;
@@ -41,40 +41,17 @@
     > div {
       width: 100%;
     }
+  }
+  @include tablet {
+    &-content {
+      padding: $spacing--xl;
+    }
 
-    @include tablet {
+    &-footer {
+      padding: $spacing--xl;
       > div {
         width: 250px;
       }
     }
-  }
-}
-
-.test {
-  height: 100px;
-  width: 100px;
-  background-color: red;
-  animation: blob 9s alternate-reverse infinite;
-}
-
-@keyframes blob {
-  0% {
-    border-radius: 22% 70% 10% 76% / 35% 67% 15% 42%;
-  }
-
-  25% {
-    border-radius: 62% 71% 22% 78% / 26% 85% 24% 60%;
-  }
-  50% {
-    border-radius: 44% 56% 52% 48% / 30% 30% 70% 70%;
-    transform: rotate(180deg);
-  }
-  75% {
-    border-radius: 62% 47% 86% 18% / 63% 65% 28% 10%;
-  }
-
-  100% {
-    border-radius: 22% 70% 10% 76% / 35% 67% 15% 42%;
-    transform: rotate(360deg);
   }
 }

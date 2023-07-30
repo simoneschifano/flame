@@ -1,0 +1,41 @@
+.UrlBox {
+  width: 100%;
+  display: flex;
+  color: $color-black;
+
+  input {
+    width: 100%;
+    padding: $spacing--md;
+    border: none;
+    border-radius: $border-radius--sm 0 0 $border-radius--sm;
+    border-right: none;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: white;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: transparent;
+    white-space: nowrap;
+    padding: $spacing--md;
+    border: none;
+    border-left: 1px solid $color-background;
+    border-radius: 0 $border-radius--sm $border-radius--sm 0;
+    font-size: rem(14px);
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.3s, background-color 0.3s;
+    background-color: white;
+
+    &:hover {
+      background-color: $color-secondary;
+    }
+  }
+
+  &--copied {
+    button {
+      background-color: $color-secondary;
+    }
+  }
+}

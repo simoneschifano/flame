@@ -13,20 +13,25 @@ export const gameReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case OVERWRITE_STATE: {
+    case OVERWRITE_STATE:
       return { ...state, ...payload };
-    }
 
     case UPDATE_USER: {
       const { key, value } = payload;
 
-      return { ...state, userData: { ...state.userData, [key]: value } };
+      return {
+        ...state,
+        userData: { ...state.userData, [key]: value },
+      };
     }
 
     case UPDATE_QUESTION: {
-      const { key, value } = payload;
       const updatedQuestions = [...state.questions];
-      updatedQuestions[state.currentQuestionIndex][key] = value;
+      const targetQuestion = updatedQuestions[state.currentQuestionIndex];
+      updatedQuestions[state.currentQuestionIndex] = {
+        ...targetQuestion,
+        ...payload,
+      };
 
       return {
         ...state,
@@ -48,19 +53,22 @@ export const gameReducer = (state, action) => {
         state.questions.reduce((acc, curr) => acc + curr.score, 0) /
           state.questions.length
       );
+      const isNewRecord = finalScore > (state.userData.highestScore || 0);
+
+      const newUserData = {
+        ...state.userData,
+        ...(isNewRecord && {
+          highestScore: finalScore,
+        }),
+        playedGames: [
+          ...state.userData.playedGames,
+          generateGameLog(finalScore),
+        ],
+      };
 
       return {
         ...state,
-        userData: {
-          ...state.userData,
-          ...(finalScore > (state.userData.highestScore || 0) && {
-            highestScore: finalScore,
-          }),
-          playedGames: [
-            ...state.userData.playedGames,
-            generateGameLog(finalScore),
-          ],
-        },
+        userData: newUserData,
         finalScore,
       };
     }

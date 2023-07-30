@@ -2,7 +2,7 @@
   &-options {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: $spacing--md;
 
     div:nth-child(1) {
       color: $color-green;

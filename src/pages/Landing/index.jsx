@@ -14,7 +14,13 @@ const Landing = () => {
   return (
     <main className={styles.Landing}>
       <header className={styles["Landing-header"]}>
-        <img className={styles["Landing-logo"]} src={logoSmall} alt="logo-word" />
+        <img
+          className={styles["Landing-logo"]}
+          src={logoSmall}
+          alt="logo-word"
+          width={40}
+          height={40}
+        />
         <Link to={ROUTES.LEADERBOARD}>
           <img src={arrowBlack} alt="" />
           Leaderboard
@@ -46,21 +52,20 @@ const Landing = () => {
             ></animate>
           </path>
         </svg>
-        <img className={styles["Landing-heroLogo"]} src={logo} alt="" />
-        {/* <h1>Ready to win? ⏰</h1>
-        <p>
-          Quick thinking brings you to the top! <br />
-          Track your progress and aim for the top score to become the ultimate
-          quiz champion. <br />
-          The challenge is on!
-        </p> */}
+        <img
+          className={styles["Landing-heroLogo"]}
+          src={logo}
+          alt=""
+          width={350}
+          height={149}
+        />
       </div>
       <Button onClick={() => navigate(ROUTES.NEW_GAME)}>Play now</Button>
       <article className={styles["Landing-aboutUs"]}>
         <section className={styles["Landing-aboutUs-content"]}>
           <div className={styles["Landing-aboutUs-contentHero"]}>
             <h1>About us</h1>
-            <img src={arrow} alt="" />
+            <img src={arrow} alt="" width={80} height={80} />
           </div>
           <div className={styles["Landing-aboutUs-contentItem"]}>
             <h2>The Scoring Algorithm</h2>
@@ -95,11 +100,10 @@ const Landing = () => {
             <p>
               For our final project, we enthusiastically selected an idea that
               blended excitement with a worthy challenge. After careful
-              consideration, we settled on utilizing the{" "}
-              <strong>Trivia API</strong>, finding it to be the perfect fit for
-              this endeavor. Our goal was to craft a user-friendly app that
-              would captivate and entertain users through a sleek, minimalist
-              design.
+              consideration, we settled on utilizing the Trivia API, finding it
+              to be the perfect fit for this endeavor. Our goal was to craft a
+              user-friendly app that would captivate and entertain users through
+              a sleek, minimalist design.
             </p>
           </div>
           <div className={styles["Landing-aboutUs-contentItem"]}>

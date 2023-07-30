@@ -8,8 +8,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  // TODO: find better way to handle this
-  overflow-x: hidden;
 }
 
 * {
@@ -25,14 +23,7 @@ body {
   width: 100vw;
 }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-a {
+* {
   color: $color-black;
 }
 

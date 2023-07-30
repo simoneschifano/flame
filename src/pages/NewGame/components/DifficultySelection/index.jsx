@@ -1,20 +1,17 @@
-import { useNavigate } from "react-router-dom";
-import { DIFFICULTIES } from "../../helpers/constants";
-import { useGameContext } from "../../helpers/hooks";
+import { DIFFICULTIES } from "@/pages/NewGame/helpers/constants";
+import {
+  useGameContext,
+  useRedirectCheck,
+} from "@/pages/NewGame/helpers/hooks";
 import Slot from "../Slot";
 import styles from "./index.module.scss";
-import { ROUTES } from "@/shared/helpers/constants";
-import { useEffect } from "react";
 
 const DifficultySelection = () => {
   const { gameState, updateUser } = useGameContext();
-  const navigate = useNavigate();
 
   const preferredDifficulty = gameState.userData?.preferredDifficulty;
 
-  useEffect(() => {
-    if (!gameState?.userData) navigate(ROUTES.NEW_GAME);
-  }, [gameState?.userData, navigate]);
+  useRedirectCheck();
 
   return (
     <section className={styles.DifficultySelection}>

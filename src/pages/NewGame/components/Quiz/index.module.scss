@@ -1,7 +1,7 @@
 .Quiz {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: $spacing--md;
   width: 100%;
   text-align: center;
 }

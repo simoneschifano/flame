@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { useGameContext } from "../../helpers/hooks";
-import { getUsers } from "@/shared/helpers/api";
-import Loader from "@/shared/components/Loader";
+import {
+  useGameContext,
+  useRedirectCheck,
+} from "@/pages/NewGame/helpers/hooks";
 import styles from "./index.module.scss";
 import CreatableSelect from "react-select/creatable";
 import AvatarList from "../AvatarList";
@@ -11,20 +11,18 @@ import {
 } from "@/pages/NewGame/helpers/utilities";
 
 const UserInit = () => {
-  const [usersList, setUsersList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
   const { gameState, initUser } = useGameContext();
   const username = gameState.userData?.username || "";
+  const usersList = gameState.roomData?.users;
 
-  const selectOptions = usersList.map((user) => ({
+  const selectOptions = usersList?.map((user) => ({
     value: user.id,
     label: user.username,
   }));
 
   const handleSelectExistingUser = (selectedOption) =>
     initUser(
-      usersList.find((user) => user.id === selectedOption?.value) || null
+      usersList?.find((user) => user.id === selectedOption?.value) || null
     );
 
   const getOptionLabel = ({ label, value }) => (
@@ -34,22 +32,17 @@ const UserInit = () => {
     </div>
   );
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const users = await getUsers();
-      setUsersList(users);
-      setIsLoading(false);
-    };
-    fetchUsers();
-  }, []);
+  useRedirectCheck();
 
-  return isLoading ? (
-    <Loader isContainerWide containerHeight={100} />
-  ) : (
+  return (
     <section className={styles.UserInit}>
       <h3>Choose your username & avatar</h3>
+      {!usersList?.length && (
+        <p>(Looks like you&apos;re the first one here 👀)</p>
+      )}
       <CreatableSelect
         className={styles["UserInit-select"]}
+        autoFocus={true}
         options={selectOptions}
         isClearable
         onChange={handleSelectExistingUser}

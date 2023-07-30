@@ -1,0 +1,79 @@
+.RoomIdInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing--xl;
+
+  &-title {
+    margin: 0;
+    text-align: center;
+    max-width: 35ch;
+  }
+
+  &-inputBox {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing--md;
+    font-size: rem(24px);
+    transition: transform 0.5s, opacity 0.3s;
+
+    input {
+      max-width: 43px;
+      font-size: 2rem;
+      outline: none;
+      border-radius: $border-radius--sm;
+      text-align: center;
+      border: 1px solid $color-black;
+      padding: $spacing--sm $spacing--md;
+      transition: background-color 0.2s, border-color 0.3s;
+
+      &:focus {
+        background-color: $color-primary;
+        border-color: transparent;
+      }
+    }
+  }
+
+  &-cta {
+    transform: scale(0.95);
+  }
+
+  &--valid {
+    .RoomIdInput {
+      &-inputBox {
+        transform: scale(0.95);
+        opacity: 0.8;
+
+        input {
+          border-color: $color-primary;
+
+          &:focus {
+            background-color: transparent;
+            border-color: $color-primary;
+          }
+        }
+      }
+
+      &-cta {
+        transform: scale(1);
+      }
+    }
+  }
+
+  &--error {
+    .RoomIdInput {
+      &-title {
+        color: $color-secondary;
+      }
+
+      &-inputBox {
+        input {
+          border-color: $color-secondary;
+        }
+      }
+    }
+  }
+}
