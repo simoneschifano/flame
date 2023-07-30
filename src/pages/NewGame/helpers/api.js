@@ -1,7 +1,8 @@
 import { db } from "@/plugins/firebase";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, runTransaction } from "firebase/firestore";
 import { generateRoomId, generateRoomObject } from "./utilities";
 import { getRoomById } from "@/shared/helpers/api";
+import { upsertById } from "@/shared/helpers/utilities";
 
 export const getQuestions = async (category, difficulty) => {
   const queries = new URLSearchParams({
@@ -38,10 +39,18 @@ export const createNewRoom = async () => {
   }
 };
 
-export const updateRoomDoc = async (room) => {
+export const updateRoomUser = async (roomId, user) => {
+  const roomRef = doc(db, "rooms", roomId);
+
   try {
-    await setDoc(doc(db, "rooms", room.id), room);
+    await runTransaction(db, async (transaction) => {
+      const roomDoc = await transaction.get(roomRef);
+      if (!roomDoc.exists()) throw "Room does not exist";
+
+      const newUsersList = upsertById(roomDoc.data().users, user);
+      transaction.update(roomRef, { users: newUsersList });
+    });
   } catch (e) {
-    console.error("Error updating room: ", e);
+    console.log("Transaction failed: ", e);
   }
 };

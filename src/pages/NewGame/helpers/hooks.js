@@ -8,8 +8,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { GAME_STATE_ACTIONS, NEW_GAME_ROUTES } from "./constants";
 import { getRandomQuestions, getSingleQuestionScore } from "./utilities";
 import { ROUTES } from "@/shared/helpers/constants";
-import { updateRoomDoc } from "./api";
-import { upsertById } from "@/shared/helpers/utilities";
+import { updateRoomUser } from "./api";
 import { getRoomById } from "@/shared/helpers/api";
 
 const {
@@ -33,7 +32,7 @@ export const useCurrentStep = () => {
 
 export const useGameContext = () => {
   const { state, dispatch } = useOutletContext();
-  const { roomData, questions, currentQuestionIndex } = state;
+  const { questions, currentQuestionIndex } = state;
   const currentQuestion = questions?.[currentQuestionIndex];
 
   const initRoom = useCallback(
@@ -51,13 +50,9 @@ export const useGameContext = () => {
         type: OVERWRITE_STATE,
         payload: {
           userData: user,
-          roomData: {
-            ...roomData,
-            users: upsertById(roomData.users, user),
-          },
         },
       }),
-    [dispatch, roomData]
+    [dispatch]
   );
 
   const updateUser = useCallback(
@@ -91,7 +86,7 @@ export const useGameContext = () => {
 };
 
 export const useRoomIdInUrl = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchParams] = useSearchParams();
   const urlRetrievedId = searchParams?.get("id");
 
@@ -99,10 +94,12 @@ export const useRoomIdInUrl = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!urlRetrievedId) return;
+    if (!urlRetrievedId) {
+      setIsLoading(false);
+      return;
+    }
 
     const loadRoomFromUrl = async () => {
-      setIsLoading(true);
       const room = await getRoomById(urlRetrievedId);
       if (room) setIsLoading(false);
       initRoom(room);
@@ -116,7 +113,7 @@ export const useRoomIdInUrl = () => {
 };
 
 const useSyncEndGameWithDb = (state, dispatch, setIsLoading) => {
-  const { roomData, finalScore } = state;
+  const { roomData, userData, finalScore } = state;
   const currentStep = useCurrentStep();
 
   const navigate = useNavigate();
@@ -126,7 +123,7 @@ const useSyncEndGameWithDb = (state, dispatch, setIsLoading) => {
 
     const updateUserInDb = async () => {
       setIsLoading(true);
-      await updateRoomDoc(roomData);
+      await updateRoomUser(roomData?.id, userData);
       dispatch({
         type: OVERWRITE_STATE,
         payload: { currentQuestionIndex: 0, questions: [] },
@@ -136,7 +133,15 @@ const useSyncEndGameWithDb = (state, dispatch, setIsLoading) => {
     };
 
     updateUserInDb();
-  }, [currentStep, navigate, finalScore, setIsLoading, dispatch, roomData]);
+  }, [
+    currentStep,
+    navigate,
+    finalScore,
+    setIsLoading,
+    dispatch,
+    roomData?.id,
+    userData,
+  ]);
 };
 
 export const useNavigation = (state, dispatch) => {
@@ -226,7 +231,7 @@ export const useNavigation = (state, dispatch) => {
 
   const handleUpdateRoomDoc = async (nextStep) => {
     setIsLoading(true);
-    await updateRoomDoc(roomData);
+    await updateRoomUser(roomData?.id, userData);
     setIsLoading(false);
     navigate(nextStep);
   };
@@ -299,6 +304,9 @@ export const useRedirectCheck = () => {
         break;
       case QUIZ:
         if (!userData?.preferredDifficulty) navigate(NEW_GAME);
+        break;
+      case RESULTS:
+        if (!userData?.id) navigate(NEW_GAME);
         break;
       default:
         break;

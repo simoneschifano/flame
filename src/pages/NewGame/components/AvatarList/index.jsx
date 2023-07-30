@@ -22,6 +22,9 @@ const AvatarList = () => {
           }
         />
       ))}
+      <a href="https://www.freepik.com/free-vector/set-people-avatars-isolated-round-icons-faces_28590618.htm#query=avatar&position=38&from_view=keyword&track=sph">
+        Credits for the avatars design to upklyak on Freepik
+      </a>
     </section>
   );
 };

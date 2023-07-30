@@ -1,4 +1,3 @@
-import { upsertById } from "@/shared/helpers/utilities";
 import { GAME_STATE_ACTIONS } from "./constants";
 import { generateGameLog } from "./utilities";
 
@@ -19,13 +18,10 @@ export const gameReducer = (state, action) => {
 
     case UPDATE_USER: {
       const { key, value } = payload;
-      const newUserData = { ...state.userData, [key]: value };
-      const updatedUsers = upsertById(state.roomData.users, newUserData);
 
       return {
         ...state,
-        roomData: { ...state.roomData, users: updatedUsers },
-        userData: newUserData,
+        userData: { ...state.userData, [key]: value },
       };
     }
 
@@ -73,10 +69,6 @@ export const gameReducer = (state, action) => {
       return {
         ...state,
         userData: newUserData,
-        roomData: {
-          ...state.roomData,
-          users: upsertById(state.roomData.users, newUserData),
-        },
         finalScore,
       };
     }
