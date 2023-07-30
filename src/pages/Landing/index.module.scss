@@ -1,7 +1,7 @@
 .Landing {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: $spacing--xl;
   align-items: center;
 
   &-header {
@@ -28,7 +28,7 @@
         transition: opacity 0.3s, transform 0.3s;
         transform: rotate(180deg) translateX(7px);
         margin-bottom: -4px;
-        margin-right: 4px;
+        margin-right: $spacing--sm;
       }
 
       &:hover {
@@ -37,28 +37,6 @@
           transform: rotate(180deg) translateX(0);
         }
       }
-    }
-  }
-
-  &-logo {
-    display: flex;
-    justify-content: flex-start;
-    top: 5px;
-    left: 5px;
-    width: 100px;
-  }
-
-  &-links {
-    display: flex;
-    justify-content: flex-end;
-    color: $color-accent;
-    list-style-type: none;
-    gap: 15px;
-
-    > div {
-      height: 20px;
-      width: 1px;
-      background-color: $color-black;
     }
   }
 
@@ -125,12 +103,11 @@
 
       &Item {
         margin-bottom: 50px;
-        //opacity: 0.8;
 
         > h2,
         > p {
           text-align: left;
-          margin-bottom: 15px;
+          margin-bottom: $spacing--lg;
           color: white;
         }
 

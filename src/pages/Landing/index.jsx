@@ -14,7 +14,13 @@ const Landing = () => {
   return (
     <main className={styles.Landing}>
       <header className={styles["Landing-header"]}>
-        <img className={styles["Landing-logo"]} src={logoSmall} alt="logo-word" />
+        <img
+          className={styles["Landing-logo"]}
+          src={logoSmall}
+          alt="logo-word"
+          width={40}
+          height={40}
+        />
         <Link to={ROUTES.LEADERBOARD}>
           <img src={arrowBlack} alt="" />
           Leaderboard
@@ -46,14 +52,20 @@ const Landing = () => {
             ></animate>
           </path>
         </svg>
-        <img className={styles["Landing-heroLogo"]} src={logo} alt="" />
+        <img
+          className={styles["Landing-heroLogo"]}
+          src={logo}
+          alt=""
+          width={350}
+          height={149}
+        />
       </div>
       <Button onClick={() => navigate(ROUTES.NEW_GAME)}>Play now</Button>
       <article className={styles["Landing-aboutUs"]}>
         <section className={styles["Landing-aboutUs-content"]}>
           <div className={styles["Landing-aboutUs-contentHero"]}>
             <h1>About us</h1>
-            <img src={arrow} alt="" />
+            <img src={arrow} alt="" width={80} height={80} />
           </div>
           <div className={styles["Landing-aboutUs-contentItem"]}>
             <h2>The Scoring Algorithm</h2>
