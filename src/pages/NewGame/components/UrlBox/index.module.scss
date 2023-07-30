@@ -29,13 +29,13 @@
     background-color: white;
 
     &:hover {
-      background-color: $color-primary;
+      background-color: $color-secondary;
     }
   }
 
   &--copied {
     button {
-      background-color: $color-primary;
+      background-color: $color-secondary;
     }
   }
 }

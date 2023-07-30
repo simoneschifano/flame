@@ -300,13 +300,11 @@ export const useRedirectCheck = () => {
         if (!roomData?.id) navigate(CHOOSE_ROOM);
         break;
       case CHOOSE_DIFFICULTY:
+      case RESULTS:
         if (!userData?.id) navigate(NEW_GAME);
         break;
       case QUIZ:
         if (!userData?.preferredDifficulty) navigate(NEW_GAME);
-        break;
-      case RESULTS:
-        if (!userData?.id) navigate(NEW_GAME);
         break;
       default:
         break;
