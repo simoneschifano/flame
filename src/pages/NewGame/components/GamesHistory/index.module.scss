@@ -1,10 +1,9 @@
 .GamesHistory {
   background-color: $color-primary;
-  border-radius: 10px;
-  padding: 15px;
+  border-radius: $border-radius--sm;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: $spacing--md;
   width: 100%;
 
   &-singleGame {
@@ -12,9 +11,9 @@
     display: flex;
     justify-content: space-between;
     background-color: white;
-    border-radius: 10px;
-    padding: 15px 15px;
+    border-radius: $border-radius--md;
+    padding: $spacing--lg;
     align-items: center;
-    gap: 10px;
+    gap: $spacing--md;
   }
 }

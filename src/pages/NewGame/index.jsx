@@ -5,7 +5,7 @@ import Button from "@/shared/components/Button";
 import { gameReducer } from "./helpers/reducers";
 import { useReducer } from "react";
 import { useCurrentStep, useNavigation } from "./helpers/hooks";
-import Header from "./components/Header";
+import NewGameHeader from "./components/NewGameHeader";
 
 const NewGame = () => {
   const [state, dispatch] = useReducer(gameReducer, INITIAL_GAME_STATE);
@@ -21,7 +21,7 @@ const NewGame = () => {
 
   return (
     <main className={styles.NewGame}>
-      <Header
+      <NewGameHeader
         userAvatarId={state.userData?.avatarId}
         handleBack={navigateBack}
       />

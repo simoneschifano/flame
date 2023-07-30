@@ -3,7 +3,7 @@
   border-radius: $border-radius--md;
   color: $color-black;
   cursor: pointer;
-  padding: 10px 16px;
+  padding: $spacing--md $spacing--lg;
   text-align: center;
   transition: box-shadow 0.3s;
   vertical-align: middle;

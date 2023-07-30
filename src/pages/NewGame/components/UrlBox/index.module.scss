@@ -6,11 +6,12 @@
   input {
     width: 100%;
     padding: $spacing--md;
-    border: 1px solid $color-black;
+    border: none;
     border-radius: $border-radius--sm 0 0 $border-radius--sm;
     border-right: none;
     outline: none;
     transition: border-color 0.3s;
+    background-color: white;
   }
 
   button {
@@ -18,12 +19,14 @@
     background-color: transparent;
     white-space: nowrap;
     padding: $spacing--md;
-    border: 1px solid $color-black;
+    border: none;
+    border-left: 1px solid $color-background;
     border-radius: 0 $border-radius--sm $border-radius--sm 0;
     font-size: rem(14px);
     font-weight: 600;
     outline: none;
     transition: border-color 0.3s, background-color 0.3s;
+    background-color: white;
 
     &:hover {
       background-color: $color-primary;

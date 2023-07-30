@@ -1,9 +1,9 @@
-.Header {
+.NewGameHeader {
   border-bottom: 1px solid $color-background;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: $spacing--lg $spacing--xl;
+  padding: $spacing--lg;
 
   &-back {
     outline: none;
@@ -29,5 +29,9 @@
     &--hidden {
       visibility: hidden;
     }
+  }
+
+  @include tablet {
+    padding: $spacing--lg $spacing--xl;
   }
 }

@@ -98,7 +98,6 @@ const RoomIdInput = () => {
     if (value.length === 6) {
       setDigits(value.split(""));
       inputsRefs[currentDigitIndex].blur();
-      console.log(value);
       return;
     }
 
