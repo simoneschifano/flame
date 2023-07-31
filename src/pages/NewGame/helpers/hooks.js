@@ -1,15 +1,14 @@
-import {
-  useLocation,
-  useNavigate,
-  useOutletContext,
-  useSearchParams,
-} from "react-router-dom";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { GAME_STATE_ACTIONS, NEW_GAME_ROUTES } from "./constants";
-import { getRandomQuestions, getSingleQuestionScore } from "./utilities";
+import {
+  generateUser,
+  getRandomQuestions,
+  getSingleQuestionScore,
+  getUserFromUsername,
+} from "./utilities";
 import { ROUTES } from "@/shared/helpers/constants";
 import { updateRoomUser } from "./api";
-import { getRoomById } from "@/shared/helpers/api";
 
 const {
   OVERWRITE_STATE,
@@ -85,31 +84,119 @@ export const useGameContext = () => {
   };
 };
 
-export const useRoomIdInUrl = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [searchParams] = useSearchParams();
-  const urlRetrievedId = searchParams?.get("id");
+export const useUsersAutocomplete = (users, handleUserChange) => {
+  const [username, setUsername] = useState("");
+  const [shouldShowDropdown, setShouldShowDropdown] = useState(true);
+  const [targetOptionIndex, setTargetOptionIndex] = useState(null);
+  const [invalid, setInvalid] = useState(false);
 
-  const { initRoom } = useGameContext();
-  const navigate = useNavigate();
+  const filteredUsers = users?.filter((user) =>
+    user.username.toLowerCase().includes(username.toLowerCase())
+  );
 
-  useEffect(() => {
-    if (!urlRetrievedId) {
-      setIsLoading(false);
-      return;
+  const shouldShowIsFirst = !users?.length && !username;
+  const shouldShowCreateNew = !getUserFromUsername(users, username) && username;
+
+  const handleKeyDown = (e) => {
+    switch (e.key) {
+      case "Tab":
+        e.preventDefault();
+        if (targetOptionIndex !== null) return;
+        setTargetOptionIndex(0);
+        break;
+
+      case "ArrowDown":
+        e.preventDefault();
+        if (
+          targetOptionIndex === null ||
+          targetOptionIndex === filteredUsers.length - 1
+        ) {
+          setTargetOptionIndex(0);
+          return;
+        }
+        setTargetOptionIndex(targetOptionIndex + 1);
+        break;
+
+      case "ArrowUp":
+        e.preventDefault();
+        if (!targetOptionIndex) {
+          setTargetOptionIndex(filteredUsers.length - 1);
+          return;
+        }
+        setTargetOptionIndex(targetOptionIndex - 1);
+        break;
+
+      case "Enter": {
+        e.preventDefault();
+        if (shouldShowCreateNew && !filteredUsers.length) {
+          handleUserChange(generateUser(username));
+          setShouldShowDropdown(false);
+        }
+
+        if (targetOptionIndex === null) return;
+        const targetUser = filteredUsers[targetOptionIndex];
+        setUsername(targetUser?.username || username);
+        handleUserChange(targetUser);
+        setShouldShowDropdown(false);
+        break;
+      }
+
+      case " ":
+        e.preventDefault();
+        setInvalid(true);
+        break;
+
+      default:
+        break;
     }
+  };
 
-    const loadRoomFromUrl = async () => {
-      const room = await getRoomById(urlRetrievedId);
-      if (room) setIsLoading(false);
-      initRoom(room);
-      navigate("../" + NEW_GAME_ROUTES.CHOOSE_USERNAME);
-    };
+  const handleClickOutside = () => {
+    shouldShowDropdown && setShouldShowDropdown(false);
+    setTargetOptionIndex(null);
+    invalid && setInvalid(false);
+  };
 
-    loadRoomFromUrl();
-  }, [initRoom, navigate, urlRetrievedId]);
+  const handleValueChange = (e) => {
+    const value = e.target.value;
+    setUsername(value.trim());
+    invalid && setInvalid(false);
+    targetOptionIndex !== null && setTargetOptionIndex(null);
+  };
 
-  return { isLoadingRoomFromUrl: isLoading };
+  const handleUserSelection = (user) => {
+    setUsername(user.username);
+    handleUserChange(user);
+    setShouldShowDropdown(false);
+  };
+
+  const handleClear = () => {
+    setUsername("");
+    invalid && setInvalid(false);
+    handleUserChange(null);
+  };
+
+  const handleCreateNew = () => {
+    handleUserChange(generateUser(username));
+    setShouldShowDropdown(false);
+  };
+
+  return {
+    username,
+    shouldShowDropdown,
+    setShouldShowDropdown,
+    targetOptionIndex,
+    invalid,
+    filteredUsers,
+    shouldShowIsFirst,
+    shouldShowCreateNew,
+    handleKeyDown,
+    handleClickOutside,
+    handleValueChange,
+    handleUserSelection,
+    handleClear,
+    handleCreateNew,
+  };
 };
 
 const useSyncEndGameWithDb = (state, dispatch, setIsLoading) => {
@@ -270,7 +357,14 @@ export const useNavigation = (state, dispatch) => {
       }
 
       case RESULTS:
-        navigate("../" + LEADERBOARD);
+        navigate(
+          "../" +
+            LEADERBOARD +
+            "?roomId=" +
+            roomData?.id +
+            "&userId=" +
+            userData?.id
+        );
         break;
 
       default:

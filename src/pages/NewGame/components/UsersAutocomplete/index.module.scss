@@ -1,0 +1,112 @@
+.UsersAutocomplete {
+  position: relative;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: $border-radius--sm;
+
+  &-input {
+    border-radius: $border-radius--sm;
+    width: 100%;
+    outline: none;
+    padding: $spacing--md;
+    font-size: 1rem;
+    padding-right: 35px;
+    border: none;
+  }
+
+  &-tooltip {
+    @include tooltip;
+    opacity: 1;
+  }
+
+  &-clear {
+    position: absolute;
+    right: $spacing--md;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  &-dropdown {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    max-height: 200px;
+    overflow-x: auto;
+    z-index: $z-modal;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-end-start-radius: $border-radius--sm;
+    border-end-end-radius: $border-radius--sm;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+    &Item {
+      padding: $spacing--md;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      z-index: $z-modal;
+      transition: background-color 0.3s;
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+
+      &--target,
+      &:hover {
+        background-color: $color-background;
+      }
+    }
+
+    &-noUsers {
+      padding: $spacing--lg;
+      text-align: center;
+      line-height: 2.5;
+      margin: 0 auto;
+    }
+
+    &-newOption {
+      padding: $spacing--lg;
+      cursor: pointer;
+      color: $color-primary;
+      position: sticky;
+      bottom: 0;
+      background-color: white;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      z-index: $z-modal;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: $spacing--md;
+
+      span:first-child {
+        white-space: wrap;
+      }
+      span:last-child {
+        opacity: 0.7;
+        font-size: rem(12px);
+      }
+    }
+  }
+
+  &--showDropdown {
+    .UsersAutocomplete {
+      &-input {
+        border-end-start-radius: 0;
+        border-end-end-radius: 0;
+      }
+    }
+  }
+
+  @include tablet {
+    width: 350px;
+  }
+}

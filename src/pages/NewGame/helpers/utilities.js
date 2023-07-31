@@ -1,4 +1,3 @@
-import { AVATARS } from "@/shared/helpers/constants";
 import { getQuestions } from "./api";
 import {
   CATEGORIES_ID,
@@ -87,8 +86,8 @@ export const generateRoomObject = (id) => ({
   users: [],
 });
 
-export const getAvatarFromUserId = (usersList, userId) =>
-  AVATARS[usersList?.find((user) => user.id === userId)?.avatarId];
+export const getUserFromUsername = (users, username) =>
+  users?.find((user) => user.username === username);
 
 export const getSingleQuestionScore = (responseTime, difficulty) =>
   Math.round(
@@ -101,7 +100,7 @@ export const generateRoomId = () =>
 export const getRoomUrl = (id) =>
   `${window.location.origin.toString()}${ROUTES.NEW_GAME}/${
     NEW_GAME_ROUTES.CHOOSE_ROOM
-  }?id=${id}`;
+  }?roomId=${id}`;
 
 export const getFlamesFromScore = (score) => {
   if (score > 666) return "🔥🔥🔥";
