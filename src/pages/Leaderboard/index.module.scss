@@ -1,0 +1,24 @@
+.Leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  height: 100%;
+
+  &-header {
+    display: grid;
+    place-items: center;
+    border-bottom: 1px solid $color-background;
+    padding: $spacing--lg;
+    width: 100%;
+
+    img {
+      width: 110px;
+      cursor: pointer;
+    }
+  }
+
+  &-content {
+    margin: auto 0;
+  }
+}
