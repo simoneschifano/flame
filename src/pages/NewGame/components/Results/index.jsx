@@ -14,9 +14,14 @@ const Results = () => {
     <section className={styles.Results}>
       <ConfettiExplosion style={{ marginLeft: "50%" }} particleCount={300} />
       <div className={styles["Results-hero"]}>
-        <h1>Congratulations!</h1>
-        <h2>You scored {gameState.finalScore} pt.</h2>
+        <h1>
+          {gameState.finaleScore === 0
+            ? "Is this your best?"
+            : "Congratulations!"}
+        </h1>
+        <h2>You scored {gameState.finalScore} pts.</h2>
       </div>
+
       <div className={styles["Results-card"]}>
         <p className={styles["Results-cardTitle"]}>👑 History 👑</p>
         <GamesHistory />

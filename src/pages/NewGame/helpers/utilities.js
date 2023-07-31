@@ -108,3 +108,10 @@ export const getFlamesFromScore = (score) => {
   if (score >= 1) return "🔥";
   return "";
 };
+
+export const getMedalFromIndex = (index) => {
+  if (index === 0) return "🥇";
+  if (index === 1) return "🥈";
+  if (index === 2) return "🥉";
+  return "";
+};
