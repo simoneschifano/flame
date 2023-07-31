@@ -1,7 +1,6 @@
 import styles from "../Landing/index.module.scss";
 import logo from "@/assets/brand/logo-word.svg";
 import logoSmall from "@/assets/brand/logo-small.svg";
-import arrow from "@/assets/svg/arrow-back--white.svg";
 import arrowBlack from "@/assets/svg/arrow-back.svg";
 import Button from "@/shared/components/Button";
 import { Link, useNavigate } from "react-router-dom";
@@ -22,7 +21,7 @@ const Landing = () => {
           height={40}
         />
         <Link to={ROUTES.LEADERBOARD}>
-          <img src={arrowBlack} alt="" />
+          <img src={arrowBlack} alt="" width={20} height={20} />
           Leaderboard
         </Link>
       </header>
@@ -65,7 +64,7 @@ const Landing = () => {
         <section className={styles["Landing-aboutUs-content"]}>
           <div className={styles["Landing-aboutUs-contentHero"]}>
             <h1>About us</h1>
-            <img src={arrow} alt="" width={80} height={80} />
+            <img src={arrowBlack} alt="" width={80} height={80} />
           </div>
           <div className={styles["Landing-aboutUs-contentItem"]}>
             <h2>The Scoring Algorithm</h2>

@@ -33,7 +33,13 @@ const CreateNewRoom = ({ newRoomId, handleCreation }) => {
           </h4>
           <img src={arrow} alt="" />
           <h1>{newRoomId}</h1>
-          <UrlBox url={getRoomUrl(newRoomId)} />
+          <UrlBox roomId={newRoomId} />
+          <Button
+            style={{ backgroundColor: "#fff" }}
+            onClick={() => (location.href = getRoomUrl(newRoomId))}
+          >
+            Start playing now!
+          </Button>
         </>
       ) : (
         <Button

@@ -27,10 +27,12 @@
       font-size: rem(18px);
     }
 
-    h6 {
+    span {
+      font-weight: bold;
       margin: 0;
-      opacity: 0.6;
+      opacity: 0.78;
       max-width: 20ch;
+      font-size: rem(12px);
     }
 
     &Links {

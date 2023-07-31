@@ -1,25 +1,17 @@
 import { Fragment, useRef, useState } from "react";
+import PropTypes from "prop-types";
 import styles from "./index.module.scss";
 import Button from "@/shared/components/Button";
 import { useClassNames } from "@/shared/helpers/hooks";
-import { useGameContext } from "@/pages/NewGame/helpers/hooks";
-import { useNavigate } from "react-router-dom";
-import { NEW_GAME_ROUTES } from "@/pages/NewGame/helpers/constants";
 import { getRoomById } from "@/shared/helpers/api";
 
-const { CHOOSE_USERNAME } = NEW_GAME_ROUTES;
-
-const RoomIdInput = () => {
+const RoomIdInput = ({ handleSuccess }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [digits, setDigits] = useState(Array(6).fill(""));
   const [currentDigitIndex, setCurrentDigitIndex] = useState(0);
 
   const inputsRefs = useRef([]);
-
-  const { initRoom } = useGameContext();
-
-  const navigate = useNavigate();
 
   const isValid = digits.every(Boolean);
   const finalDigits = digits.join("");
@@ -43,9 +35,7 @@ const RoomIdInput = () => {
       return;
     }
 
-    initRoom(room);
-
-    navigate("../" + CHOOSE_USERNAME);
+    handleSuccess(room);
   };
 
   const handleKeyDown = (event) => {
@@ -95,8 +85,8 @@ const RoomIdInput = () => {
   const handleChange = (event) => {
     const { value } = event.target;
 
-    if (value.length === 6) {
-      setDigits(value.split(""));
+    if (value.trim().length === 6) {
+      setDigits(value.trim().split(""));
       inputsRefs[currentDigitIndex].blur();
       return;
     }
@@ -153,6 +143,10 @@ const RoomIdInput = () => {
       </Button>
     </section>
   );
+};
+
+RoomIdInput.propTypes = {
+  handleSuccess: PropTypes.func.isRequired,
 };
 
 export default RoomIdInput;

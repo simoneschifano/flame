@@ -1,14 +1,31 @@
-import RoomIdInput from "../RoomIdInput";
 import styles from "./index.module.scss";
-import { useState } from "react";
-import { useRoomIdInUrl } from "@/pages/NewGame/helpers/hooks";
+import { useCallback, useState } from "react";
+import { useGameContext } from "@/pages/NewGame/helpers/hooks";
 import Loader from "@/shared/components/Loader";
 import CreateNewRoom from "../CreateNewRoom";
+import { useNavigate } from "react-router-dom";
+import RoomIdInput from "@/shared/components/RoomIdInput";
+import { NEW_GAME_ROUTES } from "@/pages/NewGame/helpers/constants";
+import { useRoomIdInUrl } from "@/shared/helpers/hooks";
+
+const { CHOOSE_USERNAME } = NEW_GAME_ROUTES;
 
 const RoomSelection = () => {
   const [newRoomId, setNewRoomId] = useState(null);
 
-  const { isLoadingRoomFromUrl } = useRoomIdInUrl();
+  const navigate = useNavigate();
+
+  const { initRoom } = useGameContext();
+
+  const handleJoin = useCallback(
+    (room) => {
+      initRoom(room);
+      navigate("../" + CHOOSE_USERNAME);
+    },
+    [initRoom, navigate]
+  );
+
+  const { isLoadingRoomFromUrl } = useRoomIdInUrl(handleJoin);
 
   return isLoadingRoomFromUrl ? (
     <Loader isContainerWide />
@@ -16,7 +33,7 @@ const RoomSelection = () => {
     <section className={styles.RoomSelection}>
       {!newRoomId && (
         <>
-          <RoomIdInput />
+          <RoomIdInput handleSuccess={handleJoin} />
           <div className={styles["RoomSelection-divider"]}>
             <div />
             <span>OR</span>
