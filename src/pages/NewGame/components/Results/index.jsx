@@ -8,14 +8,18 @@ import GamesHistory from "../GamesHistory";
 
 const Results = () => {
   const { gameState } = useGameContext();
+  console.log(gameState);
 
   useRedirectCheck();
   return (
     <section className={styles.Results}>
-      <ConfettiExplosion style={{ marginLeft: "50%" }} particleCount={300} />
+      <ConfettiExplosion
+        style={{ marginLeft: "50%" }}
+        particleCount={gameState.finalScore}
+      />
       <div className={styles["Results-hero"]}>
         <h1>
-          {gameState.finaleScore === 0
+          {gameState.finalScore === 0
             ? "Is this your best?"
             : "Congratulations!"}
         </h1>

@@ -50,7 +50,7 @@ const Leaderboard = () => {
                   <div>
                     {" "}
                     {getMedalFromIndex(index)}
-                    {user.highestScore}
+                    {user.highestScore || "🦖?!"}
                   </div>
                 </div>
               ))}
