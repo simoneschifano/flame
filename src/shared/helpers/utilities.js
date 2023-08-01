@@ -1,3 +1,6 @@
+import { NEW_GAME_ROUTES } from "@/pages/NewGame/helpers/constants";
+import { ROUTES } from "./constants";
+
 export const getCleanedUpClassNames = (classNames) =>
   classNames.filter(Boolean).join(" ").trim();
 
@@ -18,3 +21,8 @@ export const upsertById = (array, newPayload) => {
 
   return array;
 };
+
+export const getRoomUrl = (id) =>
+  `${window.location.origin.toString()}${ROUTES.NEW_GAME}/${
+    NEW_GAME_ROUTES.CHOOSE_ROOM
+  }?roomId=${id}`;

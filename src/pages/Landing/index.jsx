@@ -22,7 +22,7 @@ const Landing = () => {
           height={40}
         />
         <Link to={ROUTES.LEADERBOARD}>
-          <img src={arrowBlack} alt="" />
+          <img src={arrowBlack} alt="" width={20} height={20} />
           Leaderboard
         </Link>
       </header>
@@ -68,6 +68,17 @@ const Landing = () => {
             <img src={arrow} alt="" width={80} height={80} />
           </div>
           <div className={styles["Landing-aboutUs-contentItem"]}>
+            <h2>The Project&apos;s Idea</h2>
+            <p>
+              For our final project, we enthusiastically selected an idea that
+              blended excitement with a worthy challenge. After careful
+              consideration, we settled on utilizing the Trivia API, finding it
+              to be the perfect fit for this endeavor. Our goal was to craft a
+              user-friendly app that would captivate and entertain users through
+              a sleek, minimalist design.
+            </p>
+          </div>
+          <div className={styles["Landing-aboutUs-contentItem"]}>
             <h2>The Scoring Algorithm</h2>
             <p>
               We were inspired by Kahoot and developed our own scoring
@@ -93,17 +104,6 @@ const Landing = () => {
               elements from Kahoot&apos;s approach and our own innovations, we
               believe our scoring algorithm will make the gameplay even more
               enjoyable and competitive.
-            </p>
-          </div>
-          <div className={styles["Landing-aboutUs-contentItem"]}>
-            <h2>The Project&apos;s Idea</h2>
-            <p>
-              For our final project, we enthusiastically selected an idea that
-              blended excitement with a worthy challenge. After careful
-              consideration, we settled on utilizing the Trivia API, finding it
-              to be the perfect fit for this endeavor. Our goal was to craft a
-              user-friendly app that would captivate and entertain users through
-              a sleek, minimalist design.
             </p>
           </div>
           <div className={styles["Landing-aboutUs-contentItem"]}>

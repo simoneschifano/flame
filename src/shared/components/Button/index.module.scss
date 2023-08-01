@@ -3,31 +3,7 @@
   transition: transform 0.5s;
 
   &-tooltip {
-    z-index: $z-tooltip;
-    position: absolute;
-    bottom: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: $color-black;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: $border-radius--sm;
-    font-size: 0.8rem;
-    opacity: 0;
-    transition: opacity 0.3s 0.7s;
-    white-space: nowrap;
-    pointer-events: none;
-
-    &::after {
-      content: " ";
-      position: absolute;
-      top: 99%;
-      left: 50%;
-      margin-left: -$spacing--sm;
-      border-width: $spacing--sm;
-      border-style: solid;
-      border-color: $color-black transparent transparent transparent;
-    }
+    @include tooltip;
   }
 
   &:hover {
@@ -73,6 +49,7 @@
       width: 0px;
       transform: scale(0.8);
       cursor: pointer;
+      pointer-events: none;
     }
   }
 

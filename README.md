@@ -1,4 +1,4 @@
-# FLAME - Fullstack Web-Based Quiz Game
+# FLAME - Quiz Game
 
 ## Introduction <a name="introduction"></a>
 
@@ -16,8 +16,10 @@ Welcome to the FLAME project documentation! This repository houses the source co
    - [Asynchronous Functions - Fetching Data from APIs](#asynchronous-functions-fetching-data-from-apis)
    - [Asynchronous Functions - Working with Firestore Database](#asynchronous-functions-working-with-firestore-database)
    - [Reducer Function and Custom Hook](#reducer-function-and-custom-hook)
+   - [Custom Hooks for Game Navigation, User Management, and URL Handling](#custom-hooks-for-game-navigation-and-url-handling)
 
-## The Idea <a name="idea"></a>
+## The Idea <a name="idea"></a>
+
 For our final project in our frontend bootcamp, we enthusiastically selected an idea that blended excitement with a worthy challenge. After careful consideration, we settled on utilizing the [Trivia API](https://opentdb.com/api_config.php), finding it to be the perfect fit for this endeavor. Our goal was to craft a user-friendly app that would captivate and entertain users through a sleek, minimalist design.
 
 ## The Team <a name="team"></a>
@@ -59,15 +61,6 @@ This function decodes HTML entities in the provided string and returns the decod
 
 - `html` (string): The HTML string containing entities to be decoded.
 
-#### `getAvatarFromUserId(usersList, userId)`
-
-This utility function retrieves the avatar associated with a given user ID from a list of users.
-
-- `usersList` (array): The list of user objects.
-- `userId` (string): The ID of the user whose avatar is to be retrieved.
-
-Returns the avatar associated with the specified user ID or `null` if no matching user is found.
-
 #### `getFlamesFromScore(score)`
 
 This function returns a flame emoji representation based on the player's score.
@@ -98,6 +91,14 @@ This function updates an object in an array by its ID or appends it if not found
 - `newPayload` (object): The new object to be updated or appended.
 
 Returns the updated array.
+
+#### `getUserFromUsername(users, username)`
+
+This function retrieves a user object from an array of users based on the provided username.
+
+- `users` (array): The array of user objects.
+- `username` (string): The username of the user to retrieve.
+  Returns the user object matching the provided username or `undefined` if not found.
 
 ### Functions for Generating Objects <a name="functions-for-generating-objects"></a>
 
@@ -219,7 +220,45 @@ Returns an object with the following properties:
 - `selectedAnswer`: The currently selected answer option for the question.
 - `setSelectedAnswer`: A function to update the selected answer option.
 
-### Custom Hooks for Game Navigation and URL Handling <a name="custom-hooks-for-game-navigation-and-url-handling"></a>
+### Custom Hooks for Game Navigation, User Management, and URL Handling <a name="custom-hooks-for-game-navigation-and-url-handling"></a>
+
+### `useUsersAutocomplete(users, handleUserChange)`
+
+The `useUsersAutocomplete` hook provides functionality for autocomplete and user selection in the FLAME application. It is used in scenarios where the user needs to select or create a new user using an autocomplete dropdown.
+
+As parameters, it takes:
+
+- `users` (array): An array of user objects representing the available users for autocomplete.
+- `handleUserChange` (function): A callback function that handles changes when a user is selected or created.
+
+The hook returns an object with the following properties and functions:
+
+- `username` (string): The current value of the input field for the username.
+- `shouldShowDropdown` (boolean): A flag indicating whether the autocomplete dropdown should be displayed.
+- `setShouldShowDropdown` (function): A function to set the `shouldShowDropdown` state.
+- `targetOptionIndex` (number or null): The index of the currently selected option in the autocomplete dropdown.
+- `invalid` (boolean): A flag indicating whether the input field contains an invalid value.
+- `filteredUsers` (array): An array of user objects filtered based on the current input value.
+- `shouldShowIsFirst` (boolean): A flag indicating whether the "create new user" option should be displayed when there are no existing users and the input field is empty.
+- `shouldShowCreateNew` (boolean): A flag indicating whether the "create new user" option should be displayed based on the current input value.
+- `handleKeyDown` (function): A function to handle keyboard events for navigation in the autocomplete dropdown.
+- `handleClickOutside` (function): A function to handle clicks outside the autocomplete dropdown, closing it if it is open.
+- `handleValueChange` (function): A function to handle changes in the input field's value and update the `username` state.
+- `handleUserSelection` (function): A function to handle user selection from the autocomplete dropdown. It updates the `username` state and calls the `handleUserChange` callback with the selected user.
+- `handleClear` (function): A function to clear the input field and reset the autocomplete dropdown's state.
+- `handleCreateNew` (function): A function to create a new user with the current input value and call the `handleUserChange` callback with the newly created user. It also closes the autocomplete dropdown.
+
+Its functionalities are:
+
+- The hook manages the autocomplete dropdown's state, showing or hiding it based on user input and other conditions.
+- It allows users to navigate through the autocomplete options using the arrow keys and the Tab key.
+- Users can select an option from the dropdown by pressing Enter or by clicking on the option.
+- If the input value matches an existing user's username, the corresponding user is selected from the dropdown.
+- If the input value does not match any existing user's username and is not empty, users can choose to create a new user.
+- The hook handles click events outside the autocomplete dropdown, closing the dropdown when it's open.
+- It also handles input validation and displays an "invalid" state if the input contains invalid characters.
+
+The `useUsersAutocomplete` hook is an essential part of the FLAME application, enabling smooth user interactions when selecting or creating users for various game-related operations.
 
 #### `useCurrentStep()`
 
@@ -241,13 +280,22 @@ Returns an object with the following properties and functions:
 - `initQuestions(questions)`: A function to initialize the game state with an array of questions.
 - `updateQuestionState(payload)`: A function to update the state of the current question.
 
-#### `useRoomIdInUrl()`
+### `useRoomIdInUrl(roomDataHandler)`
 
 This custom hook retrieves the room ID from the URL and loads the room data if available. It is used for seamless navigation when joining a room through a URL.
+
+- `roomDataHandler`: A function to handle the retrieved room data.
 
 Returns an object with the following properties:
 
 - `isLoadingRoomFromUrl`: A boolean indicating whether the room data is being loaded from the URL.
+
+### `useClickOutside(ref, handler)`
+
+This custom hook handles the click outside functionality. It executes the given handler function when a click event occurs outside the provided reference element.
+
+- `ref`: A React ref object that represents the element.
+- `handler`: A function to be executed when a click event occurs outside the element.
 
 #### `useSyncEndGameWithDb(state, dispatch, setIsLoading)`
 
