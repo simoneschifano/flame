@@ -5,8 +5,8 @@ import arrowBlack from "@/assets/svg/arrow-back.svg";
 import logo from "@/assets/brand/logo-word.svg";
 import { useCurrentStep } from "@/pages/NewGame/helpers/hooks";
 import { AVATARS, ROUTES } from "@/shared/helpers/constants";
-import { useClassNames } from "@/shared/helpers/hooks";
 import { useNavigate } from "react-router-dom";
+import VolumeButton from "@/shared/components/VolumeButton";
 
 const { CHOOSE_ROOM, CHOOSE_USERNAME, QUIZ } = NEW_GAME_ROUTES;
 
@@ -14,12 +14,6 @@ const NewGameHeader = ({ handleBack, userAvatarId }) => {
   const currentStep = useCurrentStep();
 
   const navigate = useNavigate();
-
-  const avatarClassNames = useClassNames([
-    styles["NewGameHeader-avatar"],
-    [CHOOSE_ROOM, CHOOSE_USERNAME].includes(currentStep) &&
-      styles["NewGameHeader-avatar--hidden"],
-  ]);
 
   return (
     <header className={styles.NewGameHeader}>
@@ -33,15 +27,15 @@ const NewGameHeader = ({ handleBack, userAvatarId }) => {
         style={{ cursor: currentStep === QUIZ ? "default" : "pointer" }}
         alt=""
       />
-      {userAvatarId ? (
-        <img
-          className={avatarClassNames}
-          src={AVATARS?.[userAvatarId]}
-          alt=""
-        />
-      ) : (
-        <div className={styles["NewGameHeader-avatarPlaceholder"]} />
-      )}
+      <VolumeButton className={styles["NewGameHeader-volumeButton"]} />
+      {userAvatarId !== null &&
+        ![CHOOSE_ROOM, CHOOSE_USERNAME].includes(currentStep) && (
+          <img
+            className={styles["NewGameHeader-avatar"]}
+            src={AVATARS[userAvatarId]}
+            alt=""
+          />
+        )}
     </header>
   );
 };

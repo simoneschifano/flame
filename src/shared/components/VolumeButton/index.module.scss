@@ -1,0 +1,13 @@
+.VolumeButton {
+  width: 35px;
+  height: 35px;
+  padding: 7px;
+  background-color: $color-primary;
+  border-radius: $border-radius--xl;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &--muted {
+    background-color: $color-background;
+  }
+}

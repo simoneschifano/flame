@@ -13,6 +13,7 @@ import { updateRoomUser } from "./api";
 import useSound from "use-sound";
 import correctSfx from "@/assets/sounds/right.mp3";
 import wrongSfx from "@/assets/sounds/wrong.mp3";
+import { getStoredMuted } from "@/shared/helpers/storage";
 
 const {
   OVERWRITE_STATE,
@@ -438,8 +439,8 @@ export const useRetrieveQuestions = () => {
 };
 
 export const useScoringLogic = () => {
-  const [correctSound] = useSound(correctSfx, { volume: 0.5 });
-  const [wrongSound] = useSound(wrongSfx, { volume: 0.5 });
+  const [correctSound] = useSound(correctSfx, { volume: 0.2, interrupt: true });
+  const [wrongSound] = useSound(wrongSfx, { volume: 0.2, interrupt: true });
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [responseTime, setResponseTime] = useState(0);
 
@@ -473,7 +474,7 @@ export const useScoringLogic = () => {
     clearInterval(stopwatchRef.current);
 
     if (selectedAnswer?.isCorrect) {
-      correctSound();
+      !getStoredMuted() && correctSound();
       updateQuestionState({
         score: getSingleQuestionScore(
           responseTime,
@@ -481,7 +482,7 @@ export const useScoringLogic = () => {
         ),
       });
     } else {
-      wrongSound();
+      !getStoredMuted() && wrongSound();
       updateQuestionState({ score: 0 });
     }
   }, [

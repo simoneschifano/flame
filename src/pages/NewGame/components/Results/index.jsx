@@ -7,23 +7,30 @@ import {
 import GamesHistory from "../GamesHistory";
 import { useEffect } from "react";
 import victorySfx from "@/assets/sounds/victory.mp3";
+import lossSfx from "@/assets/sounds/fail.wav";
 import useSound from "use-sound";
+import { getStoredMuted } from "@/shared/helpers/storage";
 
 const Results = () => {
-  const [victorySound] = useSound(victorySfx, { volume: 0.5 });
+  const [victorySound] = useSound(victorySfx, { volume: 0.2 });
+  const [lossSound] = useSound(lossSfx, { volume: 0.2 });
   const { gameState } = useGameContext();
 
   useEffect(() => {
-    victorySound();
-  }, [victorySound]);
+    !getStoredMuted() && gameState.finalScore !== 0
+      ? victorySound()
+      : lossSound();
+  }, [gameState.finalScore, lossSound, victorySound]);
 
   useRedirectCheck();
   return (
     <section className={styles.Results}>
-      <ConfettiExplosion
-        style={{ marginLeft: "50%" }}
-        particleCount={gameState.finalScore / 2}
-      />
+      {gameState.finalScore !== 0 && (
+        <ConfettiExplosion
+          style={{ marginLeft: "50%" }}
+          particleCount={gameState.finalScore / 2}
+        />
+      )}
       <div className={styles["Results-hero"]}>
         <h1>
           {gameState.finalScore === 0
