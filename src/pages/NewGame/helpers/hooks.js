@@ -10,6 +10,10 @@ import {
 import { ROUTES } from "@/shared/helpers/constants";
 import { updateRoomUser } from "./api";
 
+import useSound from "use-sound";
+import correctSfx from "@/assets/sounds/right.mp3";
+import wrongSfx from "@/assets/sounds/wrong.mp3";
+
 const {
   OVERWRITE_STATE,
   UPDATE_USER,
@@ -434,6 +438,8 @@ export const useRetrieveQuestions = () => {
 };
 
 export const useScoringLogic = () => {
+  const [correctSound] = useSound(correctSfx, { volume: 0.5 });
+  const [wrongSound] = useSound(wrongSfx, { volume: 0.5 });
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [responseTime, setResponseTime] = useState(0);
 
@@ -466,20 +472,26 @@ export const useScoringLogic = () => {
 
     clearInterval(stopwatchRef.current);
 
-    if (selectedAnswer?.isCorrect)
+    if (selectedAnswer?.isCorrect) {
+      correctSound();
       updateQuestionState({
         score: getSingleQuestionScore(
           responseTime,
           currentQuestion?.difficulty
         ),
       });
-    else updateQuestionState({ score: 0 });
+    } else {
+      wrongSound();
+      updateQuestionState({ score: 0 });
+    }
   }, [
     currentQuestion?.difficulty,
     responseTime,
     currentQuestion?.shouldShowCorrection,
     updateQuestionState,
     selectedAnswer?.isCorrect,
+    correctSound,
+    wrongSound,
   ]);
 
   return {

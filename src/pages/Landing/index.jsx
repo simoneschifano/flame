@@ -7,8 +7,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/shared/helpers/constants";
 import CreatorList from "./components/CreatorsList";
 
+import useSound from "use-sound";
+import boopSfx from "@/assets/sounds/boop.mp3";
+
 const Landing = () => {
   const navigate = useNavigate();
+  const [playButton] = useSound(boopSfx, { volume: 0.5 });
 
   return (
     <main className={styles.Landing}>
@@ -59,7 +63,14 @@ const Landing = () => {
           height={149}
         />
       </div>
-      <Button onClick={() => navigate(ROUTES.NEW_GAME)}>Play now</Button>
+      <Button
+        onClick={() => {
+          playButton();
+          navigate(ROUTES.NEW_GAME);
+        }}
+      >
+        Play now
+      </Button>
       <article className={styles["Landing-aboutUs"]}>
         <section className={styles["Landing-aboutUs-content"]}>
           <div className={styles["Landing-aboutUs-contentHero"]}>
