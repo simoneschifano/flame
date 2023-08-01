@@ -15,7 +15,9 @@
   }
 
   &--selected {
-    transition: border-width 0.2s, box-shadow 0.3s;
+    transition: border-width 0.2s, box-shadow 0.3s, padding 0.3s;
+    padding-top: calc($spacing--md - 1.5px);
+    padding-bottom: calc($spacing--md - 1.5px);
     border-width: 3px;
     pointer-events: none;
   }

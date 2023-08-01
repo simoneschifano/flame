@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import { createNewRoom } from "@/pages/NewGame/helpers/api";
-import { getRoomUrl } from "@/pages/NewGame/helpers/utilities";
 import arrow from "@/assets/svg/arrow-back--white.svg";
 import UrlBox from "../UrlBox";
 import styles from "./index.module.scss";
 import { useState } from "react";
 import Button from "@/shared/components/Button";
 import { useClassNames } from "@/shared/helpers/hooks";
+import { getRoomUrl } from "@/shared/helpers/utilities";
 
 const CreateNewRoom = ({ newRoomId, handleCreation }) => {
   const [isCreatingRoom, setIsCreatingRoom] = useState(false);
@@ -33,7 +33,13 @@ const CreateNewRoom = ({ newRoomId, handleCreation }) => {
           </h4>
           <img src={arrow} alt="" />
           <h1>{newRoomId}</h1>
-          <UrlBox url={getRoomUrl(newRoomId)} />
+          <UrlBox roomId={newRoomId} />
+          <Button
+            style={{ backgroundColor: "#fff" }}
+            onClick={() => (location.href = getRoomUrl(newRoomId))}
+          >
+            Start playing now!
+          </Button>
         </>
       ) : (
         <Button

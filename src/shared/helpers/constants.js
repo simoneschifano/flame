@@ -37,3 +37,7 @@ export const ROUTES = {
   NEW_GAME: "/new-game",
   LEADERBOARD: "/leaderboard",
 };
+
+export const LOCAL_STORAGE_KEYS = {
+  MUTED: "flame_muted",
+};

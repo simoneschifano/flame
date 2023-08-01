@@ -5,20 +5,43 @@ import {
   useRedirectCheck,
 } from "@/pages/NewGame/helpers/hooks";
 import GamesHistory from "../GamesHistory";
+import { useEffect } from "react";
+import victorySfx from "@/assets/sounds/victory.mp3";
+import lossSfx from "@/assets/sounds/fail.wav";
+import useSound from "use-sound";
+import { getStoredMuted } from "@/shared/helpers/storage";
 
 const Results = () => {
+  const [victorySound] = useSound(victorySfx, { volume: 0.2 });
+  const [lossSound] = useSound(lossSfx, { volume: 0.2 });
   const { gameState } = useGameContext();
+
+  useEffect(() => {
+    !getStoredMuted() && gameState.finalScore !== 0
+      ? victorySound()
+      : lossSound();
+  }, [gameState.finalScore, lossSound, victorySound]);
 
   useRedirectCheck();
   return (
     <section className={styles.Results}>
-      <ConfettiExplosion style={{ marginLeft: "50%" }} particleCount={300} />
+      {gameState.finalScore !== 0 && (
+        <ConfettiExplosion
+          style={{ marginLeft: "50%" }}
+          particleCount={gameState.finalScore / 2}
+        />
+      )}
       <div className={styles["Results-hero"]}>
-        <h1>Congratulations!</h1>
-        <h2>You scored {gameState.finalScore} pt.</h2>
+        <h1>
+          {gameState.finalScore === 0
+            ? "Is this your best?"
+            : "Congratulations!"}
+        </h1>
+        <h2>You scored {gameState.finalScore} pts.</h2>
       </div>
+
       <div className={styles["Results-card"]}>
-        <p className={styles["Results-cardTitle"]}>👑 History 👑</p>
+        <h4 className={styles["Results-cardTitle"]}>👑 History 👑</h4>
         <GamesHistory />
       </div>
     </section>

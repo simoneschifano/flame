@@ -8,7 +8,7 @@ const CreatorList = () => {
         ({ username, name, profileImage, linkedInUrl, githubUrl }) => (
           <div key={username} className={styles["CreatorsList-creator"]}>
             <h4>{username}</h4>
-            <h6>{name}</h6>
+            <span>{name}</span>
             <img src={profileImage} alt={username} width={110} height={110} />
             <div className={styles["CreatorsList-creatorLinks"]}>
               <a href={githubUrl}>🥷 GitHub</a>

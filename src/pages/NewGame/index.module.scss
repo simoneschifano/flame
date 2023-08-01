@@ -42,6 +42,7 @@
       width: 100%;
     }
   }
+
   @include tablet {
     &-content {
       padding: $spacing--xl;
