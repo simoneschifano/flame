@@ -7,7 +7,7 @@ import { useCallback, useState } from "react";
 import { useRoomIdInUrl } from "@/shared/helpers/hooks";
 import Loader from "@/shared/components/Loader";
 import Button from "@/shared/components/Button";
-import { getMedalFromIndex } from "../NewGame/helpers/utilities";
+import { getMedalFromIndex, getRoomUrl } from "../NewGame/helpers/utilities";
 
 const Leaderboard = () => {
   const [roomData, setRoomData] = useState(null);
@@ -58,7 +58,9 @@ const Leaderboard = () => {
           )}
         </section>
       )}
-      <Button onClick={() => navigate(ROUTES.NEW_GAME)}>Play again!</Button>
+      <Button onClick={() => navigate(getRoomUrl(roomData?.id))}>
+        Play again!
+      </Button>
     </div>
   );
 };
