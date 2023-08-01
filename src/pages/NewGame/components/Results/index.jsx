@@ -5,17 +5,24 @@ import {
   useRedirectCheck,
 } from "@/pages/NewGame/helpers/hooks";
 import GamesHistory from "../GamesHistory";
+import { useEffect } from "react";
+import victorySfx from "@/assets/sounds/victory.mp3";
+import useSound from "use-sound";
 
 const Results = () => {
+  const [victorySound] = useSound(victorySfx, { volume: 0.5 });
   const { gameState } = useGameContext();
-  console.log(gameState);
+
+  useEffect(() => {
+    victorySound();
+  }, [victorySound]);
 
   useRedirectCheck();
   return (
     <section className={styles.Results}>
       <ConfettiExplosion
         style={{ marginLeft: "50%" }}
-        particleCount={gameState.finalScore}
+        particleCount={gameState.finalScore / 2}
       />
       <div className={styles["Results-hero"]}>
         <h1>
