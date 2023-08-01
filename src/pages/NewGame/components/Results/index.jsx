@@ -15,7 +15,7 @@ const Results = () => {
       <ConfettiExplosion style={{ marginLeft: "50%" }} particleCount={300} />
       <div className={styles["Results-hero"]}>
         <h1>
-          {gameState.finaleScore === 0
+          {gameState.finalScore === 0
             ? "Is this your best?"
             : "Congratulations!"}
         </h1>

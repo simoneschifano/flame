@@ -17,7 +17,7 @@
     flex-direction: column;
     gap: $spacing--md;
     padding: $spacing--xl;
-    width: 400px;
+    width: 100%;
   }
 
   &-users {
@@ -43,23 +43,3 @@
     margin: auto 0;
   }
 }
-
-// .GamesHistory {
-//   background-color: $color-primary;
-//   border-radius: $border-radius--sm;
-//   display: flex;
-//   flex-direction: column;
-//   gap: $spacing--md;
-//   width: 100%;
-
-//   &-singleGame {
-//     font-weight: bold;
-//     display: flex;
-//     justify-content: space-between;
-//     background-color: white;
-//     border-radius: $border-radius--md;
-//     padding: $spacing--lg;
-//     align-items: center;
-//     gap: $spacing--md;
-//   }
-// }
