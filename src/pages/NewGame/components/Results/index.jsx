@@ -27,7 +27,7 @@ const Results = () => {
       </div>
 
       <div className={styles["Results-card"]}>
-        <p className={styles["Results-cardTitle"]}>👑 History 👑</p>
+        <h4 className={styles["Results-cardTitle"]}>👑 History 👑</h4>
         <GamesHistory />
       </div>
     </section>

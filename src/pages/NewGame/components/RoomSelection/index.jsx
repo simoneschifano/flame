@@ -4,9 +4,8 @@ import { useGameContext } from "@/pages/NewGame/helpers/hooks";
 import Loader from "@/shared/components/Loader";
 import CreateNewRoom from "../CreateNewRoom";
 import { useNavigate } from "react-router-dom";
-import RoomIdInput from "@/shared/components/RoomIdInput";
 import { NEW_GAME_ROUTES } from "@/pages/NewGame/helpers/constants";
-import { useRoomIdInUrl } from "@/shared/helpers/hooks";
+import { useRoomId } from "@/shared/helpers/hooks";
 
 const { CHOOSE_USERNAME } = NEW_GAME_ROUTES;
 
@@ -25,7 +24,7 @@ const RoomSelection = () => {
     [initRoom, navigate]
   );
 
-  const { isLoadingRoomFromUrl } = useRoomIdInUrl(handleJoin);
+  const { isLoadingRoomFromUrl, RoomIdInput } = useRoomId(handleJoin);
 
   return isLoadingRoomFromUrl ? (
     <Loader isContainerWide />
@@ -33,7 +32,7 @@ const RoomSelection = () => {
     <section className={styles.RoomSelection}>
       {!newRoomId && (
         <>
-          <RoomIdInput handleSuccess={handleJoin} />
+          <RoomIdInput />
           <div className={styles["RoomSelection-divider"]}>
             <div />
             <span>OR</span>

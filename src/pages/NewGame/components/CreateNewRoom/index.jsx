@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import { createNewRoom } from "@/pages/NewGame/helpers/api";
-import { getRoomUrl } from "@/pages/NewGame/helpers/utilities";
 import arrow from "@/assets/svg/arrow-back--white.svg";
 import UrlBox from "../UrlBox";
 import styles from "./index.module.scss";
 import { useState } from "react";
 import Button from "@/shared/components/Button";
 import { useClassNames } from "@/shared/helpers/hooks";
+import { getRoomUrl } from "@/shared/helpers/utilities";
 
 const CreateNewRoom = ({ newRoomId, handleCreation }) => {
   const [isCreatingRoom, setIsCreatingRoom] = useState(false);

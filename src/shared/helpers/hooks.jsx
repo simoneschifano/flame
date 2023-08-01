@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { getCleanedUpClassNames } from "./utilities";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { getRoomById } from "./api";
+import RoomIdInput from "../components/RoomIdInput";
 
 export const useClassNames = (classNames) =>
   useMemo(() => getCleanedUpClassNames(classNames), [classNames]);
@@ -19,7 +20,7 @@ export const useClickOutside = (ref, handler) => {
   }, [clickHandler]);
 };
 
-export const useRoomIdInUrl = (roomDataHandler) => {
+export const useRoomId = (roomDataHandler) => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams] = useSearchParams();
   const urlRetrievedId = searchParams?.get("roomId");
@@ -41,5 +42,8 @@ export const useRoomIdInUrl = (roomDataHandler) => {
     loadRoomFromUrl();
   }, [navigate, roomDataHandler, urlRetrievedId]);
 
-  return { isLoadingRoomFromUrl: isLoading };
+  return {
+    isLoadingRoomFromUrl: isLoading,
+    RoomIdInput: () => <RoomIdInput handleSuccess={roomDataHandler} />,
+  };
 };

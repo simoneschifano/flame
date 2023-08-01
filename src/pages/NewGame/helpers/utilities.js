@@ -1,12 +1,6 @@
 import { getQuestions } from "./api";
-import {
-  CATEGORIES_ID,
-  MULTIPLIER,
-  TIMER_DURATION,
-  NEW_GAME_ROUTES,
-} from "./constants";
-import { ROUTES } from "@/shared/helpers/constants";
-import { shuffle } from "@/shared/helpers/utilities";
+import { CATEGORIES_ID, MULTIPLIER, TIMER_DURATION } from "./constants";
+import { getRoomUrl, shuffle } from "@/shared/helpers/utilities";
 
 export const decodeHtml = (html) => {
   const txt = document.createElement("textarea");
@@ -97,11 +91,6 @@ export const getSingleQuestionScore = (responseTime, difficulty) =>
 export const generateRoomId = () =>
   String(Math.floor(100000 + Math.random() * 900000));
 
-export const getRoomUrl = (id) =>
-  `${window.location.origin.toString()}${ROUTES.NEW_GAME}/${
-    NEW_GAME_ROUTES.CHOOSE_ROOM
-  }?roomId=${id}`;
-
 export const getFlamesFromScore = (score) => {
   if (score > 666) return "🔥🔥🔥";
   if (score > 333) return "🔥🔥";
@@ -109,9 +98,9 @@ export const getFlamesFromScore = (score) => {
   return "";
 };
 
-export const getMedalFromIndex = (index) => {
-  if (index === 0) return "🥇";
-  if (index === 1) return "🥈";
-  if (index === 2) return "🥉";
-  return "";
-};
+export const getShareCopy = (
+  roomId
+) => `Join my room in FLAME, let's challenge ourselves! 
+
+Enter the PIN: ${roomId}
+Or click on this link: ${getRoomUrl(roomId)}`;

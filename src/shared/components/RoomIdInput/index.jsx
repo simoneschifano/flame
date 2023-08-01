@@ -61,6 +61,12 @@ const RoomIdInput = ({ handleSuccess }) => {
         break;
       }
 
+      case "Enter":
+        event.preventDefault();
+        if (!isValid) return;
+        handleJoin();
+        break;
+
       case "ArrowLeft": {
         event.preventDefault();
         if (currentDigitIndex === 0) return;
@@ -87,18 +93,13 @@ const RoomIdInput = ({ handleSuccess }) => {
 
     if (value.trim().length === 6) {
       setDigits(value.trim().split(""));
-      inputsRefs[currentDigitIndex].blur();
+      inputsRefs[5].focus();
       return;
     }
 
     const newDigits = [...digits];
     newDigits[currentDigitIndex] = value[value.length - 1];
     setDigits(newDigits);
-
-    if (currentDigitIndex === digits.length - 1) {
-      inputsRefs[currentDigitIndex].blur();
-      return;
-    }
 
     setCurrentDigitIndex(currentDigitIndex + 1);
     inputsRefs[currentDigitIndex + 1].focus();

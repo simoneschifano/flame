@@ -1,36 +1,53 @@
 import { useClassNames } from "@/shared/helpers/hooks";
 import styles from "./index.module.scss";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import PropTypes from "prop-types";
-import { getRoomUrl } from "../../helpers/utilities";
+import { getRoomUrl } from "@/shared/helpers/utilities";
+import { getShareCopy } from "../../helpers/utilities";
 
 const UrlBox = ({ roomId }) => {
-  const [hasLinkBeenCopied, setHasLinkBeenCopied] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   const roomUrl = getRoomUrl(roomId);
 
   const classNames = useClassNames([
     styles.UrlBox,
-    hasLinkBeenCopied && styles["UrlBox--copied"],
+    clicked && styles["UrlBox--copied"],
   ]);
 
-  const handleCopyLink = () => {
-    const finalString = `
-Join my room in FLAME, let's challenge ourselves! 
+  const deviceCanShare = navigator.share;
 
-Enter the PIN: ${roomId}
-Or click on this link: ${roomUrl}`;
+  const ctaCopy = useMemo(() => {
+    if (deviceCanShare) return clicked ? "Shared!" : "Share link";
+    return clicked ? "Copied!" : "Copy link";
+  }, [clicked, deviceCanShare]);
 
-    navigator.clipboard.writeText(finalString);
-    setHasLinkBeenCopied(true);
+  const handleShareLink = async () => {
+    const shareCopy = getShareCopy(roomId);
+
+    if (deviceCanShare) {
+      try {
+        await navigator
+          .share({
+            title: "Join my room in FLAME!",
+            text: shareCopy,
+            url: roomUrl,
+          })
+          .then(() => setClicked(true));
+      } catch (error) {
+        console.error(`Couldn't share link: ${error}`);
+      }
+      return;
+    }
+
+    navigator.clipboard.writeText(shareCopy);
+    setClicked(true);
   };
 
   return (
     <div className={classNames}>
       <input readOnly type="text" value={roomUrl} />
-      <button onClick={handleCopyLink}>
-        {hasLinkBeenCopied ? "Copied!" : "Copy link"}
-      </button>
+      <button onClick={handleShareLink}>{ctaCopy}</button>
     </div>
   );
 };
