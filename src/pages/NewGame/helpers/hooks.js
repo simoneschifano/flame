@@ -90,10 +90,13 @@ export const useGameContext = () => {
 };
 
 export const useUsersAutocomplete = (users, handleUserChange) => {
-  const [username, setUsername] = useState("");
+  const { userData } = useGameContext();
+  const [username, setUsername] = useState(userData?.username || "");
   const [shouldShowDropdown, setShouldShowDropdown] = useState(true);
   const [targetOptionIndex, setTargetOptionIndex] = useState(null);
   const [invalid, setInvalid] = useState(false);
+
+  const inputRef = useRef(null);
 
   const filteredUsers = users?.filter((user) =>
     user.username.toLowerCase().includes(username.toLowerCase())
@@ -133,10 +136,7 @@ export const useUsersAutocomplete = (users, handleUserChange) => {
 
       case "Enter": {
         e.preventDefault();
-        if (shouldShowCreateNew && !filteredUsers.length) {
-          handleUserChange(generateUser(username));
-          setShouldShowDropdown(false);
-        }
+        if (shouldShowCreateNew && !filteredUsers.length) handleCreateNew();
 
         if (targetOptionIndex === null) return;
         const targetUser = filteredUsers[targetOptionIndex];
@@ -173,6 +173,7 @@ export const useUsersAutocomplete = (users, handleUserChange) => {
     setUsername(user.username);
     handleUserChange(user);
     setShouldShowDropdown(false);
+    inputRef.current.blur();
   };
 
   const handleClear = () => {
@@ -184,9 +185,11 @@ export const useUsersAutocomplete = (users, handleUserChange) => {
   const handleCreateNew = () => {
     handleUserChange(generateUser(username));
     setShouldShowDropdown(false);
+    inputRef.current.blur();
   };
 
   return {
+    inputRef,
     username,
     shouldShowDropdown,
     setShouldShowDropdown,

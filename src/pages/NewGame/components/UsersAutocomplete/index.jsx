@@ -5,10 +5,11 @@ import { getCleanedUpClassNames } from "@/shared/helpers/utilities";
 import crossIcon from "@/assets/svg/cross.svg";
 import { useClassNames, useClickOutside } from "@/shared/helpers/hooks";
 import PropTypes from "prop-types";
-import { useUsersAutocomplete } from "../../helpers/hooks";
+import { useUsersAutocomplete } from "@/pages/NewGame/helpers/hooks";
 
 const UsersAutocomplete = ({ users, handleUserChange }) => {
   const {
+    inputRef,
     username,
     shouldShowDropdown,
     setShouldShowDropdown,
@@ -38,6 +39,7 @@ const UsersAutocomplete = ({ users, handleUserChange }) => {
   return (
     <div className={classNames} ref={autocompleteRef}>
       <input
+        ref={inputRef}
         type="text"
         maxLength={20}
         autoComplete="off"

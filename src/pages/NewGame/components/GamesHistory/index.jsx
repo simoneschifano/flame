@@ -1,6 +1,6 @@
 import styles from "./index.module.scss";
 import { useGameContext } from "@/pages/NewGame/helpers/hooks";
-import { getFlamesFromScore } from "../../helpers/utilities";
+import { getFlamesFromScore } from "@/pages/NewGame/helpers/utilities";
 
 const GamesHistory = () => {
   const { gameState } = useGameContext();

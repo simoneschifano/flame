@@ -8,7 +8,7 @@ export const getQuestions = async (category, difficulty) => {
   const queries = new URLSearchParams({
     difficulty,
     category,
-    amount: 1,
+    amount: 3,
     type: "multiple",
   });
 

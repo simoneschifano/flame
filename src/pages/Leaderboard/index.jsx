@@ -7,7 +7,8 @@ import { useRoomId } from "@/shared/helpers/hooks";
 import Loader from "@/shared/components/Loader";
 import Button from "@/shared/components/Button";
 import { getMedalFromIndex, getSortedUsers } from "./helpers/utilities";
-import { getCleanedUpClassNames, getRoomUrl } from "@/shared/helpers/utilities";
+import { getCleanedUpClassNames } from "@/shared/helpers/utilities";
+import { NEW_GAME_ROUTES } from "../NewGame/helpers/constants";
 
 const Leaderboard = () => {
   const [roomData, setRoomData] = useState(null);
@@ -17,10 +18,14 @@ const Leaderboard = () => {
   const navigate = useNavigate();
 
   const sortedUsers = getSortedUsers(roomData?.users);
-  console.log(roomData);
-  console.log(userId);
 
   const handleRoomFromUrl = useCallback((room) => setRoomData(room), []);
+
+  const handlePlayAgain = () =>
+    navigate({
+      pathname: `${ROUTES.NEW_GAME}/${NEW_GAME_ROUTES.CHOOSE_ROOM}`,
+      search: "?roomId=" + roomData.id,
+    });
 
   const { isLoadingRoomFromUrl, RoomIdInput } = useRoomId(handleRoomFromUrl);
 
@@ -63,11 +68,7 @@ const Leaderboard = () => {
                   </div>
                 ))}
               </div>
-              <Button
-                onClick={() => (location.href = getRoomUrl(roomData?.id))}
-              >
-                Play again!
-              </Button>
+              <Button onClick={handlePlayAgain}>Play again!</Button>
             </>
           )}
         </section>

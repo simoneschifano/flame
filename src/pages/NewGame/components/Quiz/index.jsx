@@ -59,7 +59,7 @@ const Quiz = () => {
         <Slot
           key={answer.id}
           variant={getAnswerDisplayVariant(answer)}
-          onClick={() => setSelectedAnswer(answer)}
+          onClick={() => !shouldShowCorrection && setSelectedAnswer(answer)}
         >
           {decodeHtml(answer.text)}
         </Slot>

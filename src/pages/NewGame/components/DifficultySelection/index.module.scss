@@ -6,14 +6,21 @@
     flex-direction: column;
     gap: $spacing--md;
 
-    div:nth-child(1) {
-      color: $color-green;
-    }
-    div:nth-child(2) {
-      color: $color-yellow;
-    }
-    div:nth-child(3) {
-      color: $color-red;
+    &Item {
+      transition: color 0.2s, background-color 0.3s, box-shadow 0.3s;
+      &:nth-child(1) {
+        color: $color-green;
+      }
+      &:nth-child(2) {
+        color: $color-yellow;
+      }
+      &:nth-child(3) {
+        color: $color-red;
+      }
+
+      &--selected {
+        color: #fff !important;
+      }
     }
   }
 }

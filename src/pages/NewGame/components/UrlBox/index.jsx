@@ -3,7 +3,7 @@ import styles from "./index.module.scss";
 import { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { getRoomUrl } from "@/shared/helpers/utilities";
-import { getShareCopy } from "../../helpers/utilities";
+import { getShareCopy } from "@/pages/NewGame/helpers/utilities";
 
 const UrlBox = ({ roomId }) => {
   const [clicked, setClicked] = useState(false);

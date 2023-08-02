@@ -14,7 +14,7 @@
     align-items: center;
     gap: $spacing--sm;
     transition: transform 0.3s, box-shadow 0.3s;
-    min-width: 155px;
+    width: 155px;
 
     &:hover {
       transform: scale(1.02);

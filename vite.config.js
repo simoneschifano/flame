@@ -9,7 +9,6 @@ export default defineConfig({
       scss: {
         additionalData: `
           @import "./src/shared/scss/constants";
-          @import "./src/shared/scss/extends";
           @import "./src/shared/scss/functions";
           @import "./src/shared/scss/mixins";
         `,

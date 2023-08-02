@@ -3,9 +3,10 @@ import { useClassNames } from "@/shared/helpers/hooks";
 import styles from "./index.module.scss";
 import { memo } from "react";
 
-const Slot = memo(({ children, variant, onClick }) => {
+const Slot = memo(({ children, className, variant, onClick }) => {
   const classNames = useClassNames([
     styles.Slot,
+    className,
     variant && styles[`Slot--${variant}`],
   ]);
 
@@ -18,6 +19,7 @@ const Slot = memo(({ children, variant, onClick }) => {
 
 Slot.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   variant: PropTypes.string,
   onClick: PropTypes.func.isRequired,
 };

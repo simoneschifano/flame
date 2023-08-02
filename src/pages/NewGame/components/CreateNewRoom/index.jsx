@@ -6,7 +6,8 @@ import styles from "./index.module.scss";
 import { useState } from "react";
 import Button from "@/shared/components/Button";
 import { useClassNames } from "@/shared/helpers/hooks";
-import { getRoomUrl } from "@/shared/helpers/utilities";
+import { useNavigate } from "react-router-dom";
+import { NEW_GAME_ROUTES } from "@/pages/NewGame/helpers/constants";
 
 const CreateNewRoom = ({ newRoomId, handleCreation }) => {
   const [isCreatingRoom, setIsCreatingRoom] = useState(false);
@@ -16,12 +17,20 @@ const CreateNewRoom = ({ newRoomId, handleCreation }) => {
     newRoomId && styles["CreateNewRoom--created"],
   ]);
 
+  const navigate = useNavigate();
+
   const handleCreateNewRoom = async () => {
     setIsCreatingRoom(true);
     const roomId = await createNewRoom();
     setIsCreatingRoom(false);
     handleCreation(roomId);
   };
+
+  const handleStartPlaying = () =>
+    navigate({
+      pathname: "../" + NEW_GAME_ROUTES.CHOOSE_ROOM,
+      search: "?roomId=" + newRoomId,
+    });
 
   return (
     <div className={classNames}>
@@ -36,7 +45,7 @@ const CreateNewRoom = ({ newRoomId, handleCreation }) => {
           <UrlBox roomId={newRoomId} />
           <Button
             style={{ backgroundColor: "#fff" }}
-            onClick={() => (location.href = getRoomUrl(newRoomId))}
+            onClick={handleStartPlaying}
           >
             Start playing now!
           </Button>

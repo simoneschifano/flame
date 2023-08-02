@@ -17,9 +17,8 @@ const Results = () => {
   const { gameState } = useGameContext();
 
   useEffect(() => {
-    !getStoredMuted() && gameState.finalScore !== 0
-      ? victorySound()
-      : lossSound();
+    if (getStoredMuted()) return;
+    gameState.finalScore !== 0 ? victorySound() : lossSound();
   }, [gameState.finalScore, lossSound, victorySound]);
 
   useRedirectCheck();

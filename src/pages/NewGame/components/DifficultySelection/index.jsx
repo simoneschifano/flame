@@ -5,6 +5,7 @@ import {
 } from "@/pages/NewGame/helpers/hooks";
 import Slot from "../Slot";
 import styles from "./index.module.scss";
+import { getCleanedUpClassNames } from "@/shared/helpers/utilities";
 
 const DifficultySelection = () => {
   const { gameState, updateUser } = useGameContext();
@@ -22,6 +23,11 @@ const DifficultySelection = () => {
             key={value}
             variant={preferredDifficulty === value ? "selected" : null}
             onClick={() => updateUser("preferredDifficulty", value)}
+            className={getCleanedUpClassNames([
+              styles["DifficultySelection-optionsItem"],
+              preferredDifficulty === value &&
+                styles["DifficultySelection-optionsItem--selected"],
+            ])}
           >
             {label}
           </Slot>

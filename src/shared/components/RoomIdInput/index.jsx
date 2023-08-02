@@ -101,6 +101,7 @@ const RoomIdInput = ({ handleSuccess }) => {
     newDigits[currentDigitIndex] = value[value.length - 1];
     setDigits(newDigits);
 
+    if (currentDigitIndex === digits.length - 1) return;
     setCurrentDigitIndex(currentDigitIndex + 1);
     inputsRefs[currentDigitIndex + 1].focus();
   };

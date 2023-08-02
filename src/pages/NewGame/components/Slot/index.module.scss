@@ -7,24 +7,22 @@
   text-align: center;
   transition: box-shadow 0.3s;
   vertical-align: middle;
-  width: 100%;
   font-weight: 600;
+  box-sizing: content-box;
 
   &:hover {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
 
   &--selected {
-    transition: border-width 0.2s, box-shadow 0.3s, padding 0.3s;
-    padding-top: calc($spacing--md - 1.5px);
-    padding-bottom: calc($spacing--md - 1.5px);
-    border-width: 3px;
+    transition: box-shadow 0.3s, background-color 0.3s;
     pointer-events: none;
+    background-color: $color-primary;
   }
 
   &--correct,
   &--wrong {
-    transition: color 0.3s, border-width 0.2s, background-color 0.3s;
+    transition: color 0.3s, background-color 0.3s;
   }
 
   &--correct {
